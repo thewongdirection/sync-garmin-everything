@@ -1,0 +1,1083 @@
+google_root,path,type,format,enum_count,enum_values,status,garmin_sources
+dataPoint.coreBodyTemperature,coreBodyTemperature.id,string,,0,,API type is read-only,
+dataPoint.coreBodyTemperature,coreBodyTemperature.measurementLocation,string,,18,MEASUREMENT_LOCATION_UNSPECIFIED|OTHER|ARMPIT|BODY|EAR|FINGER|GASTRO_INTESTINAL|MOUTH|RECTUM|TOE|EAR_DRUM|TEMPORAL_ARTERY|FOREHEAD|URINARY_BLADDER|NASAL|NASOPHARYNGEAL|WRIST|VAGINA,API type is read-only,
+dataPoint.coreBodyTemperature,coreBodyTemperature.temperatureCelsius,number,double,0,,API type is read-only,
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.coreBodyTemperature,coreBodyTemperature.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.count,string,int64,0,,API type is read-only,
+dataPoint.floors,floors.interval,ObservationTimeInterval,,0,,container,
+dataPoint.floors,floors.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.floors,floors.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.floors,floors.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.floors,floors.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.floors,floors.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.activeMinutes,activeMinutes.interval,ObservationTimeInterval,,0,,container,
+dataPoint.activeMinutes,activeMinutes.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.activeMinutes,activeMinutes.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activeMinutes,activeMinutes.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.activeMinutes,activeMinutes.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.activeMinutes,activeMinutes.activeMinutesByActivityLevel[],array<ActiveMinutesByActivityLevel>,,0,,container,
+dataPoint.activeMinutes,activeMinutes.activeMinutesByActivityLevel[].activeMinutes,string,int64,0,,API type is read-only,
+dataPoint.activeMinutes,activeMinutes.activeMinutesByActivityLevel[].activityLevel,string,,4,ACTIVITY_LEVEL_UNSPECIFIED|LIGHT|MODERATE|VIGOROUS,API type is read-only,
+dataPoint.basalEnergyBurned,basalEnergyBurned.kcal,number,double,0,,API type is read-only,
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval,ObservationTimeInterval,,0,,container,
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.basalEnergyBurned,basalEnergyBurned.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.medicalDeviceInfo,MedicalDeviceInfo,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.medicalDeviceInfo.algorithmVersion,string,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.medicalDeviceInfo.serviceVersion,string,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.medicalDeviceInfo.firmwareVersion,string,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.medicalDeviceInfo.deviceModel,string,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.medicalDeviceInfo.featureVersion,string,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval,SessionTimeInterval,,0,,container,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[],array<AlertWindow>,,0,,container,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].positive,boolean,,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[],array<HeartBeat>,,0,,container,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].heartBeats[].beatsPerMinute,integer,int32,0,,API type is read-only,
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.irregularRhythmNotification,irregularRhythmNotification.alertWindows[].civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.metadata,HeartRateVariabilityMetadata,,0,,container,
+dataPoint.heartRateVariability,heartRateVariability.metadata.highFrequencyPower,number,double,0,,API type is read-only,
+dataPoint.heartRateVariability,heartRateVariability.metadata.lowFrequencyPower,number,double,0,,API type is read-only,
+dataPoint.heartRateVariability,heartRateVariability.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.heartRateVariability,heartRateVariability.rootMeanSquareOfSuccessiveDifferencesMilliseconds,number,double,0,,API type is read-only,
+dataPoint.heartRateVariability,heartRateVariability.standardDeviationMilliseconds,number,double,0,,API type is read-only,
+dataPoint.dailyOxygenSaturation,dailyOxygenSaturation.averagePercentage,number,double,0,,API type is read-only,
+dataPoint.dailyOxygenSaturation,dailyOxygenSaturation.upperBoundPercentage,number,double,0,,API type is read-only,
+dataPoint.dailyOxygenSaturation,dailyOxygenSaturation.standardDeviationPercentage,number,double,0,,API type is read-only,
+dataPoint.dailyOxygenSaturation,dailyOxygenSaturation.lowerBoundPercentage,number,double,0,,API type is read-only,
+dataPoint.dailyOxygenSaturation,dailyOxygenSaturation.date,Date,,0,,container,
+dataPoint.dailyOxygenSaturation,dailyOxygenSaturation.date.month,integer,int32,0,,API type is read-only,
+dataPoint.dailyOxygenSaturation,dailyOxygenSaturation.date.day,integer,int32,0,,API type is read-only,
+dataPoint.dailyOxygenSaturation,dailyOxygenSaturation.date.year,integer,int32,0,,API type is read-only,
+dataPoint.swimLengthsData,swimLengthsData.swimStrokeType,string,,5,SWIM_STROKE_TYPE_UNSPECIFIED|FREESTYLE|BACKSTROKE|BREASTSTROKE|BUTTERFLY,API type is read-only,
+dataPoint.swimLengthsData,swimLengthsData.interval,ObservationTimeInterval,,0,,container,
+dataPoint.swimLengthsData,swimLengthsData.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.swimLengthsData,swimLengthsData.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.swimLengthsData,swimLengthsData.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.swimLengthsData,swimLengthsData.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.swimLengthsData,swimLengthsData.strokeCount,string,int64,0,,API type is read-only,
+dataPoint.symptoms,symptoms.symptoms[],array<string>,,66,SYMPTOM_VALUE_UNSPECIFIED|CRAMPS|HEADACHE|TENDER_BREASTS|ACNE|SICK|BLOATED|HOT_FLASHES|PMS|COUGH|FEVER|DIFFICULTY_BREATHING|BACK_PAIN|SHAKINESS|HUNGER|SWEATING|ANXIETY|THIRST|FREQUENT_URINATION|BLURRE,FILLED (opt-in),get_menstrual_data_for_date:dayLog.symptoms
+dataPoint.symptoms,symptoms.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.symptoms,symptoms.sampleTime.physicalTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.symptoms,symptoms.sampleTime.utcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.symptoms,symptoms.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.symptoms,symptoms.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.kcal,number,double,0,,API type is read-only,
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval,ObservationTimeInterval,,0,,container,
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.activeEnergyBurned,activeEnergyBurned.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.height,height.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.height,height.sampleTime.physicalTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.height,height.sampleTime.utcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.height,height.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.height,height.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.height,height.heightMillimeters,string,int64,0,,FILLED (opt-in),get_user_profile:userData.height
+dataPoint.steps,steps.interval,ObservationTimeInterval,,0,,container,
+dataPoint.steps,steps.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.steps,steps.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.steps,steps.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.steps,steps.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.steps,steps.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.steps,steps.count,string,int64,0,,API type is read-only,
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval,ObservationTimeInterval,,0,,container,
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.timeInHeartRateZone,timeInHeartRateZone.heartRateZoneType,string,,5,HEART_RATE_ZONE_TYPE_UNSPECIFIED|LIGHT|MODERATE|VIGOROUS|PEAK,API type is read-only,
+dataPoint.dataSource,dataSource.device,Device,,0,,container,
+dataPoint.dataSource,dataSource.device.displayName,string,,0,,API type is read-only,
+dataPoint.dataSource,dataSource.device.manufacturer,string,,0,,API type is read-only,
+dataPoint.dataSource,dataSource.device.formFactor,string,,10,FORM_FACTOR_UNSPECIFIED|FITNESS_BAND|WATCH|PHONE|RING|CHEST_STRAP|SCALE|TABLET|HEAD_MOUNTED|SMART_DISPLAY,API type is read-only,
+dataPoint.dataSource,dataSource.platform,string,,9,PLATFORM_UNSPECIFIED|FITBIT|HEALTH_CONNECT|HEALTH_KIT|FIT|FITBIT_WEB_API|NEST|GOOGLE_WEB_API|GOOGLE_PARTNER_INTEGRATION,output-only,set by Google
+dataPoint.dataSource,dataSource.application,Application,,0,,output-only,set by Google
+dataPoint.dataSource,dataSource.application.webClientId,string,,0,,output-only,set by Google
+dataPoint.dataSource,dataSource.application.googleWebClientId,string,,0,,output-only,set by Google
+dataPoint.dataSource,dataSource.application.packageName,string,,0,,output-only,set by Google
+dataPoint.dataSource,dataSource.recordingMethod,string,,6,RECORDING_METHOD_UNSPECIFIED|MANUAL|PASSIVELY_MEASURED|DERIVED|ACTIVELY_MEASURED|UNKNOWN,API type is read-only,
+dataPoint.activityLevel,activityLevel.interval,ObservationTimeInterval,,0,,container,
+dataPoint.activityLevel,activityLevel.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.activityLevel,activityLevel.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.activityLevel,activityLevel.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activityLevel,activityLevel.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.activityLevel,activityLevel.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.activityLevel,activityLevel.activityLevelType,string,,5,ACTIVITY_LEVEL_TYPE_UNSPECIFIED|SEDENTARY|LIGHTLY_ACTIVE|MODERATELY_ACTIVE|VERY_ACTIVE,API type is read-only,
+dataPoint.distance,distance.millimeters,string,int64,0,,API type is read-only,
+dataPoint.distance,distance.interval,ObservationTimeInterval,,0,,container,
+dataPoint.distance,distance.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.distance,distance.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.distance,distance.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.distance,distance.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.distance,distance.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.heartRate,heartRate.beatsPerMinute,string,int64,0,,API type is read-only,
+dataPoint.heartRate,heartRate.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.heartRate,heartRate.sampleTime.physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.heartRate,heartRate.sampleTime.utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.heartRate,heartRate.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.heartRate,heartRate.metadata,HeartRateMetadata,,0,,container,
+dataPoint.heartRate,heartRate.metadata.motionContext,string,,3,MOTION_CONTEXT_UNSPECIFIED|ACTIVE|SEDENTARY,API type is read-only,
+dataPoint.heartRate,heartRate.metadata.sensorLocation,string,,7,SENSOR_LOCATION_UNSPECIFIED|CHEST|WRIST|FINGER|HAND|EAR_LOBE|FOOT,API type is read-only,
+dataPoint.food,food.totalFat,WeightQuantity,,0,,container,
+dataPoint.food,food.totalFat.grams,number,double,0,,API type is read-only,
+dataPoint.food,food.totalFat.userProvidedUnit,string,,9,WEIGHT_UNIT_UNSPECIFIED|GRAM|KILOGRAM|OUNCE|POUND|STONE|MILLIGRAM|MICROGRAM|NANOGRAM,API type is read-only,
+dataPoint.food,food.accessLevel,string,,3,FOOD_ACCESS_LEVEL_UNSPECIFIED|FOOD_ACCESS_LEVEL_PUBLIC|FOOD_ACCESS_LEVEL_PRIVATE,API type is read-only,
+dataPoint.food,food.nutrients[],array<NutrientQuantity>,,0,,container,
+dataPoint.food,food.nutrients[].quantity,WeightQuantity,,0,,container,
+dataPoint.food,food.nutrients[].quantity.grams,number,double,0,,API type is read-only,
+dataPoint.food,food.nutrients[].quantity.userProvidedUnit,string,,9,WEIGHT_UNIT_UNSPECIFIED|GRAM|KILOGRAM|OUNCE|POUND|STONE|MILLIGRAM|MICROGRAM|NANOGRAM,API type is read-only,
+dataPoint.food,food.nutrients[].nutrient,string,,40,NUTRIENT_UNSPECIFIED|BIOTIN|CAFFEINE|CALCIUM|CHLORIDE|CARBOHYDRATES|CHOLESTEROL|CHROMIUM|COPPER|DIETARY_FIBER|FOLIC_ACID|IODINE|IRON|MAGNESIUM|MANGANESE|MOLYBDENUM|MONOUNSATURATED_FAT|NIACIN|PANTOTHEN,API type is read-only,
+dataPoint.food,food.energyFromFat,EnergyQuantity,,0,,container,
+dataPoint.food,food.energyFromFat.kcal,number,double,0,,API type is read-only,
+dataPoint.food,food.energyFromFat.userProvidedUnit,string,,6,ENERGY_UNIT_UNSPECIFIED|JOULE|KILOJOULE|KILOCALORIE|SMALL_CALORIE|CALORIE,API type is read-only,
+dataPoint.food,food.mealType,string,,10,MEAL_TYPE_UNSPECIFIED|BEFORE_BREAKFAST|BREAKFAST|BEFORE_LUNCH|LUNCH|BEFORE_DINNER|DINNER|AFTER_DINNER|SNACK|ANYTIME,API type is read-only,
+dataPoint.food,food.energyAvg,EnergyQuantity,,0,,container,
+dataPoint.food,food.energyAvg.kcal,number,double,0,,API type is read-only,
+dataPoint.food,food.energyAvg.userProvidedUnit,string,,6,ENERGY_UNIT_UNSPECIFIED|JOULE|KILOJOULE|KILOCALORIE|SMALL_CALORIE|CALORIE,API type is read-only,
+dataPoint.food,food.description,string,,0,,API type is read-only,
+dataPoint.food,food.energyMax,EnergyQuantity,,0,,container,
+dataPoint.food,food.energyMax.kcal,number,double,0,,API type is read-only,
+dataPoint.food,food.energyMax.userProvidedUnit,string,,6,ENERGY_UNIT_UNSPECIFIED|JOULE|KILOJOULE|KILOCALORIE|SMALL_CALORIE|CALORIE,API type is read-only,
+dataPoint.food,food.displayName,string,,0,,API type is read-only,
+dataPoint.food,food.brand,string,,0,,API type is read-only,
+dataPoint.food,food.languageCode,string,,0,,API type is read-only,
+dataPoint.food,food.defaultServing,FoodServing,,0,,container,
+dataPoint.food,food.defaultServing.amount,number,double,0,,API type is read-only,
+dataPoint.food,food.defaultServing.multiplier,number,double,0,,API type is read-only,
+dataPoint.food,food.defaultServing.foodMeasurementUnitDisplayName,string,,0,,output-only,set by Google
+dataPoint.food,food.defaultServing.foodMeasurementUnitDisplayNamePlural,string,,0,,output-only,set by Google
+dataPoint.food,food.defaultServing.foodMeasurementUnit,string,,0,,API type is read-only,
+dataPoint.food,food.servings[],array<FoodServing>,,0,,container,
+dataPoint.food,food.servings[].amount,number,double,0,,API type is read-only,
+dataPoint.food,food.servings[].multiplier,number,double,0,,API type is read-only,
+dataPoint.food,food.servings[].foodMeasurementUnitDisplayName,string,,0,,output-only,set by Google
+dataPoint.food,food.servings[].foodMeasurementUnitDisplayNamePlural,string,,0,,output-only,set by Google
+dataPoint.food,food.servings[].foodMeasurementUnit,string,,0,,API type is read-only,
+dataPoint.food,food.totalCarbohydrate,WeightQuantity,,0,,container,
+dataPoint.food,food.totalCarbohydrate.grams,number,double,0,,API type is read-only,
+dataPoint.food,food.totalCarbohydrate.userProvidedUnit,string,,9,WEIGHT_UNIT_UNSPECIFIED|GRAM|KILOGRAM|OUNCE|POUND|STONE|MILLIGRAM|MICROGRAM|NANOGRAM,API type is read-only,
+dataPoint.food,food.energyMin,EnergyQuantity,,0,,container,
+dataPoint.food,food.energyMin.kcal,number,double,0,,API type is read-only,
+dataPoint.food,food.energyMin.userProvidedUnit,string,,6,ENERGY_UNIT_UNSPECIFIED|JOULE|KILOJOULE|KILOCALORIE|SMALL_CALORIE|CALORIE,API type is read-only,
+dataPoint.hydrationLog,hydrationLog.amountConsumed,VolumeQuantity,,0,,container,
+dataPoint.hydrationLog,hydrationLog.amountConsumed.userProvidedUnit,string,,9,VOLUME_UNIT_UNSPECIFIED|CUP_IMPERIAL|CUP_US|FLUID_OUNCE_IMPERIAL|FLUID_OUNCE_US|LITER|MILLILITER|PINT_IMPERIAL|PINT_US,FILLED (derived/constant),constant: MILLILITER
+dataPoint.hydrationLog,hydrationLog.amountConsumed.milliliters,number,double,0,,FILLED,get_hydration_data:valueInML
+dataPoint.hydrationLog,hydrationLog.interval,SessionTimeInterval,,0,,container,
+dataPoint.hydrationLog,hydrationLog.interval.endTime,string,google-datetime,0,,FILLED,get_hydration_data:calendarDate
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.startTime,string,google-datetime,0,,FILLED,get_hydration_data:calendarDate
+dataPoint.hydrationLog,hydrationLog.interval.endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.hydrationLog,hydrationLog.interval.startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.hydrationLog,hydrationLog.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.percentage,number,double,0,,API type is read-only,
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.oxygenSaturation,oxygenSaturation.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.createTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.exercise,exercise.activeDuration,string,google-duration,0,,FILLED,activity: duration
+dataPoint.exercise,exercise.displayName,string,,0,,FILLED,activity: activityName
+dataPoint.exercise,exercise.updateTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.exercise,exercise.splits[],array<SplitSummary>,,0,,container,
+dataPoint.exercise,exercise.splits[].startTime,string,google-datetime,0,,FILLED,get_activity_splits:lapDTOs[].startTimeGMT
+dataPoint.exercise,exercise.splits[].endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.exercise,exercise.splits[].metricsSummary,MetricsSummary,,0,,container,
+dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations,TimeInHeartRateZones,,0,,container,
+dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations.peakTime,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations.moderateTime,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations.lightTime,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations.vigorousTime,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.averageHeartRateBeatsPerMinute,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].averageHR
+dataPoint.exercise,exercise.splits[].metricsSummary.caloriesKcal,number,double,0,,FILLED,get_activity_splits:lapDTOs[].calories
+dataPoint.exercise,exercise.splits[].metricsSummary.runVo2Max,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.activeZoneMinutes,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics,MobilityMetrics,,0,,container,
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].verticalOscillation
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].strideLength
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalRatio,number,double,0,,FILLED,get_activity_splits:lapDTOs[].verticalRatio
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute,number,double,0,,FILLED,get_activity_splits:lapDTOs[].averageRunCadence
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration,string,google-duration,0,,FILLED,get_activity_splits:lapDTOs[].groundContactTime
+dataPoint.exercise,exercise.splits[].metricsSummary.averagePaceSecondsPerMeter,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.averageSpeedMillimetersPerSecond,number,double,0,,FILLED,get_activity_splits:lapDTOs[].averageSpeed
+dataPoint.exercise,exercise.splits[].metricsSummary.elevationGainMillimeters,number,double,0,,FILLED,get_activity_splits:lapDTOs[].elevationGain
+dataPoint.exercise,exercise.splits[].metricsSummary.totalSwimLengths,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.steps,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.distanceMillimeters,number,double,0,,FILLED,get_activity_splits:lapDTOs[].distance
+dataPoint.exercise,exercise.splits[].activeDuration,string,google-duration,0,,output-only,set by Google
+dataPoint.exercise,exercise.splits[].startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.exercise,exercise.splits[].endTime,string,google-datetime,0,,FILLED,get_activity_splits:lapDTOs[].elapsedDuration
+dataPoint.exercise,exercise.splits[].splitType,string,,5,SPLIT_TYPE_UNSPECIFIED|MANUAL|DURATION|DISTANCE|CALORIES,FILLED (derived/constant),constant: MANUAL (Garmin laps)
+dataPoint.exercise,exercise.exerciseType,string,,182,EXERCISE_TYPE_UNSPECIFIED|AEROBIC_WORKOUT|ARCHERY|ASSAULT_BIKE|BACKPACKING|BADMINTON|BALLET|BALLROOM_DANCE|BARRE_CLASS|BASEBALL|BASKETBALL|BIKING|BILLIARDS|BODY_WEIGHT|BOOTCAMP|BOWLING|BOXING|BREAKDAN,FILLED,activity: activityType.typeKey; activity: activityTypeDTO.typeKey
+dataPoint.exercise,exercise.metricsSummary,MetricsSummary,,0,,container,
+dataPoint.exercise,exercise.metricsSummary.heartRateZoneDurations,TimeInHeartRateZones,,0,,container,
+dataPoint.exercise,exercise.metricsSummary.heartRateZoneDurations.peakTime,string,google-duration,0,,FILLED,activity: hrTimeInZone_5
+dataPoint.exercise,exercise.metricsSummary.heartRateZoneDurations.moderateTime,string,google-duration,0,,FILLED,activity: hrTimeInZone_3
+dataPoint.exercise,exercise.metricsSummary.heartRateZoneDurations.lightTime,string,google-duration,0,,FILLED,activity: hrTimeInZone_1; activity: hrTimeInZone_2
+dataPoint.exercise,exercise.metricsSummary.heartRateZoneDurations.vigorousTime,string,google-duration,0,,FILLED,activity: hrTimeInZone_4
+dataPoint.exercise,exercise.metricsSummary.averageHeartRateBeatsPerMinute,string,int64,0,,FILLED,activity: averageHR
+dataPoint.exercise,exercise.metricsSummary.caloriesKcal,number,double,0,,FILLED,activity: calories
+dataPoint.exercise,exercise.metricsSummary.runVo2Max,number,double,0,,FILLED,activity: vO2MaxValue
+dataPoint.exercise,exercise.metricsSummary.activeZoneMinutes,string,int64,0,,FILLED,activity: moderateIntensityMinutes; activity: vigorousIntensityMinutes
+dataPoint.exercise,exercise.metricsSummary.mobilityMetrics,MobilityMetrics,,0,,container,
+dataPoint.exercise,exercise.metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters,string,int64,0,,FILLED,activity: avgVerticalOscillation; activity: verticalOscillation
+dataPoint.exercise,exercise.metricsSummary.mobilityMetrics.avgStrideLengthMillimeters,string,int64,0,,FILLED,activity: avgStrideLength; activity: strideLength
+dataPoint.exercise,exercise.metricsSummary.mobilityMetrics.avgVerticalRatio,number,double,0,,FILLED,activity: avgVerticalRatio; activity: verticalRatio
+dataPoint.exercise,exercise.metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute,number,double,0,,FILLED,activity: averageRunCadence; activity: averageRunningCadenceInStepsPerMinute
+dataPoint.exercise,exercise.metricsSummary.mobilityMetrics.avgGroundContactTimeDuration,string,google-duration,0,,FILLED,activity: avgGroundContactTime; activity: groundContactTime
+dataPoint.exercise,exercise.metricsSummary.averagePaceSecondsPerMeter,number,double,0,,FILLED,activity: averageSpeed
+dataPoint.exercise,exercise.metricsSummary.averageSpeedMillimetersPerSecond,number,double,0,,FILLED,activity: averageSpeed
+dataPoint.exercise,exercise.metricsSummary.elevationGainMillimeters,number,double,0,,FILLED,activity: elevationGain
+dataPoint.exercise,exercise.metricsSummary.totalSwimLengths,number,double,0,,FILLED,activity: activeLengths
+dataPoint.exercise,exercise.metricsSummary.steps,string,int64,0,,FILLED,activity: steps
+dataPoint.exercise,exercise.metricsSummary.distanceMillimeters,number,double,0,,FILLED,activity: distance
+dataPoint.exercise,exercise.splitSummaries[],array<SplitSummary>,,0,,container,
+dataPoint.exercise,exercise.splitSummaries[].startTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary,MetricsSummary,,0,,container,
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations,TimeInHeartRateZones,,0,,container,
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.peakTime,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.moderateTime,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.lightTime,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.vigorousTime,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.averageHeartRateBeatsPerMinute,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.caloriesKcal,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.runVo2Max,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.activeZoneMinutes,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics,MobilityMetrics,,0,,container,
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalRatio,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.averagePaceSecondsPerMeter,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.averageSpeedMillimetersPerSecond,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.elevationGainMillimeters,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.totalSwimLengths,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.steps,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.distanceMillimeters,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].activeDuration,string,google-duration,0,,output-only,set by Google
+dataPoint.exercise,exercise.splitSummaries[].startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.exercise,exercise.splitSummaries[].endTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].splitType,string,,5,SPLIT_TYPE_UNSPECIFIED|MANUAL|DURATION|DISTANCE|CALORIES,"writable, no Garmin source",
+dataPoint.exercise,exercise.notes,string,,0,,FILLED,activity: activityName; activity: description
+dataPoint.exercise,exercise.exerciseEvents[],array<ExerciseEvent>,,0,,container,
+dataPoint.exercise,exercise.exerciseEvents[].eventTime,string,google-datetime,0,,FILLED,get_activity_splits:eventDTOs[].sectionTypeDTO.key; get_activity_splits:eventDTOs[].sectionTypeDTO.sectionTypeKey; get_activity_splits:eventDTOs[].startTimeGMT
+dataPoint.exercise,exercise.exerciseEvents[].exerciseEventType,string,,7,EXERCISE_EVENT_TYPE_UNSPECIFIED|START|STOP|PAUSE|RESUME|AUTO_PAUSE|AUTO_RESUME,FILLED,get_activity_splits:eventDTOs[].sectionTypeDTO.key; get_activity_splits:eventDTOs[].sectionTypeDTO.sectionTypeKey; get_activity_splits:eventDTOs[].startTimeGMT
+dataPoint.exercise,exercise.exerciseEvents[].eventUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.exercise,exercise.exerciseMetadata,ExerciseMetadata,,0,,container,
+dataPoint.exercise,exercise.exerciseMetadata.poolLengthMillimeters,string,int64,0,,FILLED,activity: poolLength
+dataPoint.exercise,exercise.exerciseMetadata.hasGps,boolean,,0,,FILLED,activity: hasPolyline
+dataPoint.exercise,exercise.interval,SessionTimeInterval,,0,,container,
+dataPoint.exercise,exercise.interval.endTime,string,google-datetime,0,,FILLED,activity: elapsedDuration
+dataPoint.exercise,exercise.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.startTime,string,google-datetime,0,,FILLED,activity: startTimeGMT
+dataPoint.exercise,exercise.interval.endUtcOffset,string,google-duration,0,,FILLED,activity: startTimeLocal
+dataPoint.exercise,exercise.interval.startUtcOffset,string,google-duration,0,,FILLED,activity: startTimeLocal
+dataPoint.exercise,exercise.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.exercise,exercise.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.updateTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.sleep,sleep.shortAwakenings[],array<SleepStage>,,0,,output-only,set by Google
+dataPoint.sleep,sleep.shortAwakenings[].endTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.sleep,sleep.shortAwakenings[].createTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.sleep,sleep.shortAwakenings[].updateTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.sleep,sleep.shortAwakenings[].endUtcOffset,string,google-duration,0,,output-only,set by Google
+dataPoint.sleep,sleep.shortAwakenings[].startUtcOffset,string,google-duration,0,,output-only,set by Google
+dataPoint.sleep,sleep.shortAwakenings[].type,string,,7,SLEEP_STAGE_TYPE_UNSPECIFIED|AWAKE|LIGHT|DEEP|REM|ASLEEP|RESTLESS,output-only,set by Google
+dataPoint.sleep,sleep.shortAwakenings[].startTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.sleep,sleep.createTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary,SleepSummary,,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary.minutesAsleep,string,int64,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary.minutesAfterWakeUp,string,int64,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary.stagesSummary[],array<StageSummary>,,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary.stagesSummary[].type,string,,7,SLEEP_STAGE_TYPE_UNSPECIFIED|AWAKE|LIGHT|DEEP|REM|ASLEEP|RESTLESS,output-only,set by Google
+dataPoint.sleep,sleep.summary.stagesSummary[].count,string,int64,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary.stagesSummary[].minutes,string,int64,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary.minutesToFallAsleep,string,int64,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary.minutesAwake,string,int64,0,,output-only,set by Google
+dataPoint.sleep,sleep.summary.minutesInSleepPeriod,string,int64,0,,output-only,set by Google
+dataPoint.sleep,sleep.metadata,SleepMetadata,,0,,container,
+dataPoint.sleep,sleep.metadata.processed,boolean,,0,,output-only,set by Google
+dataPoint.sleep,sleep.metadata.manuallyEdited,boolean,,0,,output-only,set by Google
+dataPoint.sleep,sleep.metadata.mainSleep,boolean,,0,,output-only,set by Google
+dataPoint.sleep,sleep.metadata.stagesStatus,string,,10,STAGES_STATE_UNSPECIFIED|REJECTED_COVERAGE|REJECTED_MAX_GAP|REJECTED_START_GAP|REJECTED_END_GAP|REJECTED_NAP|REJECTED_SERVER|TIMEOUT|SUCCEEDED|PROCESSING_INTERNAL_ERROR,output-only,set by Google
+dataPoint.sleep,sleep.metadata.nap,boolean,,0,,output-only,set by Google
+dataPoint.sleep,sleep.metadata.externalId,string,,0,,FILLED,get_sleep_data:dailySleepDTO.calendarDate
+dataPoint.sleep,sleep.type,string,,3,SLEEP_TYPE_UNSPECIFIED|CLASSIC|STAGES,FILLED,get_sleep_data:dailySleepDTO.deviceRemCapable; get_sleep_data:remSleepData
+dataPoint.sleep,sleep.interval,SessionTimeInterval,,0,,container,
+dataPoint.sleep,sleep.interval.endTime,string,google-datetime,0,,FILLED,get_sleep_data:dailySleepDTO.sleepEndTimestampGMT
+dataPoint.sleep,sleep.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.startTime,string,google-datetime,0,,FILLED,get_sleep_data:dailySleepDTO.sleepStartTimestampGMT
+dataPoint.sleep,sleep.interval.endUtcOffset,string,google-duration,0,,FILLED,get_sleep_data:dailySleepDTO.sleepEndTimestampLocal
+dataPoint.sleep,sleep.interval.startUtcOffset,string,google-duration,0,,FILLED,get_sleep_data:dailySleepDTO.sleepStartTimestampLocal
+dataPoint.sleep,sleep.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.sleep,sleep.stages[],array<SleepStage>,,0,,container,
+dataPoint.sleep,sleep.stages[].endTime,string,google-datetime,0,,FILLED,get_sleep_data:sleepLevels[].endGMT
+dataPoint.sleep,sleep.stages[].createTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.sleep,sleep.stages[].updateTime,string,google-datetime,0,,output-only,set by Google
+dataPoint.sleep,sleep.stages[].endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.sleep,sleep.stages[].startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.sleep,sleep.stages[].type,string,,7,SLEEP_STAGE_TYPE_UNSPECIFIED|AWAKE|LIGHT|DEEP|REM|ASLEEP|RESTLESS,FILLED,FIT:sleep_level:sleep_level.sleep_level; FIT:sleep_level:sleep_level.timestamp; get_sleep_data:sleepLevels[].activityLevel
+dataPoint.sleep,sleep.stages[].startTime,string,google-datetime,0,,FILLED,get_sleep_data:sleepLevels[].startGMT
+dataPoint.sleep,sleep.outOfBedSegments[],array<OutOfBedSegment>,,0,,container,
+dataPoint.sleep,sleep.outOfBedSegments[].startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.sleep,sleep.outOfBedSegments[].endTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.sleep,sleep.outOfBedSegments[].startTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.sleep,sleep.outOfBedSegments[].endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.weight,weight.notes,string,,0,,"writable, no Garmin source",
+dataPoint.weight,weight.weightGrams,number,double,0,,FILLED,get_body_composition:dateWeightList[].weight; get_daily_weigh_ins:dateWeightList[].weight; get_weigh_ins:dailyWeightSummaries[].allWeightMetrics[].weight
+dataPoint.weight,weight.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.weight,weight.sampleTime.physicalTime,string,google-datetime,0,,FILLED,get_body_composition:dateWeightList[].timestampGMT; get_daily_weigh_ins:dateWeightList[].timestampGMT; get_weigh_ins:dailyWeightSummaries[].allWeightMetrics[].timestampGMT
+dataPoint.weight,weight.sampleTime.utcOffset,string,google-duration,0,,FILLED,get_body_composition:dateWeightList[].date; get_daily_weigh_ins:dateWeightList[].date; get_weigh_ins:dailyWeightSummaries[].allWeightMetrics[].date
+dataPoint.weight,weight.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.weight,weight.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.runVo2Max,number,double,0,,API type is read-only,
+dataPoint.runVo2Max,runVo2Max.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.runVo2Max,runVo2Max.sampleTime.physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.runVo2Max,runVo2Max.sampleTime.utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.runVo2Max,runVo2Max.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.measurementTiming,string,,7,MEASUREMENT_TIMING_UNSPECIFIED|AFTER_MEAL|BEFORE_MEAL|FASTING|GENERAL|BEFORE_BED|OVER_NIGHT,API type is read-only,
+dataPoint.bloodGlucose,bloodGlucose.notes,string,,0,,API type is read-only,
+dataPoint.bloodGlucose,bloodGlucose.mealType,string,,5,MEAL_TYPE_UNSPECIFIED|BREAKFAST|LUNCH|DINNER|SNACK,API type is read-only,
+dataPoint.bloodGlucose,bloodGlucose.specimen,string,,7,SPECIMEN_UNSPECIFIED|CAPILLARY_BLOOD|INTERSTITIAL_FLUID|PLASMA|SERUM|TEARS|WHOLE_BLOOD,API type is read-only,
+dataPoint.bloodGlucose,bloodGlucose.bloodGlucoseMilligramsPerDeciliter,number,double,0,,API type is read-only,
+dataPoint.bloodGlucose,bloodGlucose.measurementSource,string,,4,MEASUREMENT_SOURCE_UNSPECIFIED|SELF_MONITORING_BLOOD_GLUCOSE|CONTINUOUS_GLUCOSE_MONITORING|LAB_TEST,API type is read-only,
+dataPoint.bloodGlucose,bloodGlucose.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.bloodGlucose,bloodGlucose.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval,ObservationTimeInterval,,0,,container,
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.activeZoneMinutes,activeZoneMinutes.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.activeZoneMinutes,activeZoneMinutes.heartRateZone,string,,4,HEART_RATE_ZONE_UNSPECIFIED|FAT_BURN|CARDIO|PEAK,API type is read-only,
+dataPoint.activeZoneMinutes,activeZoneMinutes.activeZoneMinutes,string,int64,0,,API type is read-only,
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval,ObservationTimeInterval,,0,,container,
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.sedentaryPeriod,sedentaryPeriod.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.altitude,altitude.gainMillimeters,string,int64,0,,API type is read-only,
+dataPoint.altitude,altitude.interval,ObservationTimeInterval,,0,,container,
+dataPoint.altitude,altitude.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.altitude,altitude.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.altitude,altitude.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.altitude,altitude.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.altitude,altitude.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.dailySleepTemperatureDerivations,dailySleepTemperatureDerivations.relativeNightlyStddev30dCelsius,number,double,0,,API type is read-only,
+dataPoint.dailySleepTemperatureDerivations,dailySleepTemperatureDerivations.baselineTemperatureCelsius,number,double,0,,API type is read-only,
+dataPoint.dailySleepTemperatureDerivations,dailySleepTemperatureDerivations.nightlyTemperatureCelsius,number,double,0,,API type is read-only,
+dataPoint.dailySleepTemperatureDerivations,dailySleepTemperatureDerivations.date,Date,,0,,container,
+dataPoint.dailySleepTemperatureDerivations,dailySleepTemperatureDerivations.date.month,integer,int32,0,,API type is read-only,
+dataPoint.dailySleepTemperatureDerivations,dailySleepTemperatureDerivations.date.day,integer,int32,0,,API type is read-only,
+dataPoint.dailySleepTemperatureDerivations,dailySleepTemperatureDerivations.date.year,integer,int32,0,,API type is read-only,
+dataPoint.vo2Max,vo2Max.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.vo2Max,vo2Max.sampleTime.physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.vo2Max,vo2Max.sampleTime.utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.vo2Max,vo2Max.vo2Max,number,double,0,,API type is read-only,
+dataPoint.vo2Max,vo2Max.measurementMethod,string,,12,MEASUREMENT_METHOD_UNSPECIFIED|FITBIT_RUN|GOOGLE_DEMOGRAPHIC|COOPER_TEST|HEART_RATE_RATIO|METABOLIC_CART|MULTISTAGE_FITNESS_TEST|ROCKPORT_FITNESS_TEST|MAX_EXERCISE|PREDICTION_SUB_MAX_EXERCISE|PREDICTI,API type is read-only,
+dataPoint.dailyRestingHeartRate,dailyRestingHeartRate.date,Date,,0,,container,
+dataPoint.dailyRestingHeartRate,dailyRestingHeartRate.date.month,integer,int32,0,,API type is read-only,
+dataPoint.dailyRestingHeartRate,dailyRestingHeartRate.date.day,integer,int32,0,,API type is read-only,
+dataPoint.dailyRestingHeartRate,dailyRestingHeartRate.date.year,integer,int32,0,,API type is read-only,
+dataPoint.dailyRestingHeartRate,dailyRestingHeartRate.beatsPerMinute,string,int64,0,,API type is read-only,
+dataPoint.dailyRestingHeartRate,dailyRestingHeartRate.dailyRestingHeartRateMetadata,DailyRestingHeartRateMetadata,,0,,container,
+dataPoint.dailyRestingHeartRate,dailyRestingHeartRate.dailyRestingHeartRateMetadata.calculationMethod,string,,3,CALCULATION_METHOD_UNSPECIFIED|WITH_SLEEP|ONLY_WITH_AWAKE_DATA,API type is read-only,
+dataPoint.ovulationTest,ovulationTest.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.ovulationTest,ovulationTest.sampleTime.physicalTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.ovulationTest,ovulationTest.sampleTime.utcOffset,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.ovulationTest,ovulationTest.result,string,,6,OVULATION_TEST_RESULT_UNSPECIFIED|NEGATIVE|LUTEINIZING_HORMONE_SURGE|ESTROGEN_SURGE|POSITIVE|INDETERMINATE,"writable, no Garmin source",
+dataPoint.dailyRespiratoryRate,dailyRespiratoryRate.breathsPerMinute,number,double,0,,API type is read-only,
+dataPoint.dailyRespiratoryRate,dailyRespiratoryRate.date,Date,,0,,container,
+dataPoint.dailyRespiratoryRate,dailyRespiratoryRate.date.month,integer,int32,0,,API type is read-only,
+dataPoint.dailyRespiratoryRate,dailyRespiratoryRate.date.day,integer,int32,0,,API type is read-only,
+dataPoint.dailyRespiratoryRate,dailyRespiratoryRate.date.year,integer,int32,0,,API type is read-only,
+dataPoint.moods,moods.valences[],array<string>,,4,VALENCE_UNSPECIFIED|UNPLEASANT|BASELINE|PLEASANT,container,
+dataPoint.moods,moods.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.moods,moods.sampleTime.physicalTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.moods,moods.sampleTime.utcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.moods,moods.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.moods,moods.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.moods,moods.moods[],array<string>,,69,MOOD_UNSPECIFIED|AMAZED|AMUSED|ANGRY|ANNOYED|ANXIOUS|HAPPY|CONTENT|SAD|WORRIED|FRUSTRATED|EXCITED|CALM|STRESSED|ASHAMED|BRAVE|CONFIDENT|DISAPPOINTED|DISCOURAGED|DISGUSTED|DRAINED|EMBARRASSED|GRATEFUL|,FILLED (opt-in),get_menstrual_data_for_date:dayLog.moods
+dataPoint.menstrualPeriod,menstrualPeriod.interval,ObservationTimeInterval,,0,,container,
+dataPoint.menstrualPeriod,menstrualPeriod.interval.endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.menstrualPeriod,menstrualPeriod.interval.startTime,string,google-datetime,0,,FILLED (opt-in),get_menstrual_data_for_date:dayLog.flow
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.menstrualPeriod,menstrualPeriod.interval.endTime,string,google-datetime,0,,FILLED (opt-in),get_menstrual_data_for_date:dayLog.flow
+dataPoint.menstrualPeriod,menstrualPeriod.interval.startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.menstrualPeriod,menstrualPeriod.notes,string,,0,,FILLED (opt-in),get_menstrual_data_for_date:dayLog.notes
+dataPoint.foodMeasurementUnit,foodMeasurementUnit.pluralDisplayName,string,,0,,API type is read-only,
+dataPoint.foodMeasurementUnit,foodMeasurementUnit.displayName,string,,0,,API type is read-only,
+dataPoint.dailyHeartRateVariability,dailyHeartRateVariability.nonRemHeartRateBeatsPerMinute,string,int64,0,,API type is read-only,
+dataPoint.dailyHeartRateVariability,dailyHeartRateVariability.date,Date,,0,,container,
+dataPoint.dailyHeartRateVariability,dailyHeartRateVariability.date.month,integer,int32,0,,API type is read-only,
+dataPoint.dailyHeartRateVariability,dailyHeartRateVariability.date.day,integer,int32,0,,API type is read-only,
+dataPoint.dailyHeartRateVariability,dailyHeartRateVariability.date.year,integer,int32,0,,API type is read-only,
+dataPoint.dailyHeartRateVariability,dailyHeartRateVariability.averageHeartRateVariabilityMilliseconds,number,double,0,,API type is read-only,
+dataPoint.dailyHeartRateVariability,dailyHeartRateVariability.entropy,number,double,0,,API type is read-only,
+dataPoint.dailyHeartRateVariability,dailyHeartRateVariability.deepSleepRootMeanSquareOfSuccessiveDifferencesMilliseconds,number,double,0,,API type is read-only,
+dataPoint.dailyHeartRateZones,dailyHeartRateZones.date,Date,,0,,container,
+dataPoint.dailyHeartRateZones,dailyHeartRateZones.date.month,integer,int32,0,,API type is read-only,
+dataPoint.dailyHeartRateZones,dailyHeartRateZones.date.day,integer,int32,0,,API type is read-only,
+dataPoint.dailyHeartRateZones,dailyHeartRateZones.date.year,integer,int32,0,,API type is read-only,
+dataPoint.dailyHeartRateZones,dailyHeartRateZones.heartRateZones[],array<HeartRateZone>,,0,,container,
+dataPoint.dailyHeartRateZones,dailyHeartRateZones.heartRateZones[].maxBeatsPerMinute,string,int64,0,,API type is read-only,
+dataPoint.dailyHeartRateZones,dailyHeartRateZones.heartRateZones[].heartRateZoneType,string,,5,HEART_RATE_ZONE_TYPE_UNSPECIFIED|LIGHT|MODERATE|VIGOROUS|PEAK,API type is read-only,
+dataPoint.dailyHeartRateZones,dailyHeartRateZones.heartRateZones[].minBeatsPerMinute,string,int64,0,,API type is read-only,
+dataPoint.dailyVo2Max,dailyVo2Max.vo2Max,number,double,0,,API type is read-only,
+dataPoint.dailyVo2Max,dailyVo2Max.estimated,boolean,,0,,API type is read-only,
+dataPoint.dailyVo2Max,dailyVo2Max.cardioFitnessLevel,string,,7,CARDIO_FITNESS_LEVEL_UNSPECIFIED|POOR|FAIR|AVERAGE|GOOD|VERY_GOOD|EXCELLENT,API type is read-only,
+dataPoint.dailyVo2Max,dailyVo2Max.vo2MaxCovariance,number,double,0,,API type is read-only,
+dataPoint.dailyVo2Max,dailyVo2Max.date,Date,,0,,container,
+dataPoint.dailyVo2Max,dailyVo2Max.date.month,integer,int32,0,,API type is read-only,
+dataPoint.dailyVo2Max,dailyVo2Max.date.day,integer,int32,0,,API type is read-only,
+dataPoint.dailyVo2Max,dailyVo2Max.date.year,integer,int32,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.interval,SessionTimeInterval,,0,,container,
+dataPoint.electrocardiogram,electrocardiogram.interval.endTime,string,google-datetime,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.startTime,string,google-datetime,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.interval.endUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.interval.startUtcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.waveformSamples[],array<integer>,int32,0,,container,
+dataPoint.electrocardiogram,electrocardiogram.beatsPerMinuteAvg,string,int64,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.leadNumber,integer,int32,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.samplingFrequencyHertz,integer,int32,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.resultClassification,string,,8,RESULT_CLASSIFICATION_UNSPECIFIED|NORMAL_SINUS_RHYTHM|ATRIAL_FIBRILLATION|INCONCLUSIVE|INCONCLUSIVE_HIGH_HEART_RATE|INCONCLUSIVE_LOW_HEART_RATE|UNREADABLE|NOT_ANALYZED,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.millivoltsScalingFactor,integer,int32,0,,API type is read-only,
+dataPoint.electrocardiogram,electrocardiogram.medicalDeviceInfo,MedicalDeviceInfo,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.medicalDeviceInfo.algorithmVersion,string,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.medicalDeviceInfo.serviceVersion,string,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.medicalDeviceInfo.firmwareVersion,string,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.medicalDeviceInfo.deviceModel,string,,0,,output-only,set by Google
+dataPoint.electrocardiogram,electrocardiogram.medicalDeviceInfo.featureVersion,string,,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.foodDisplayName,string,,0,,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.mealType,string,,10,MEAL_TYPE_UNSPECIFIED|BEFORE_BREAKFAST|BREAKFAST|BEFORE_LUNCH|LUNCH|BEFORE_DINNER|DINNER|AFTER_DINNER|SNACK|ANYTIME,FILLED (opt-in),get_nutrition_daily_food_log:mealDetails[].meal.mealName
+dataPoint.nutritionLog,nutritionLog.energyFromFat,EnergyQuantity,,0,,container,
+dataPoint.nutritionLog,nutritionLog.energyFromFat.kcal,number,double,0,,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.energyFromFat.userProvidedUnit,string,,6,ENERGY_UNIT_UNSPECIFIED|JOULE|KILOJOULE|KILOCALORIE|SMALL_CALORIE|CALORIE,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.food,string,,0,,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.serving,Serving,,0,,container,
+dataPoint.nutritionLog,nutritionLog.serving.foodMeasurementUnit,string,,0,,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.serving.foodMeasurementUnitDisplayName,string,,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.serving.amount,number,double,0,,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.nutrients[],array<NutrientQuantity>,,0,,FILLED (opt-in),get_nutrition_daily_food_log:mealDetails[].mealNutritionContent.protein
+dataPoint.nutritionLog,nutritionLog.nutrients[].quantity,WeightQuantity,,0,,container,
+dataPoint.nutritionLog,nutritionLog.nutrients[].quantity.grams,number,double,0,,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.nutrients[].quantity.userProvidedUnit,string,,9,WEIGHT_UNIT_UNSPECIFIED|GRAM|KILOGRAM|OUNCE|POUND|STONE|MILLIGRAM|MICROGRAM|NANOGRAM,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.nutrients[].nutrient,string,,40,NUTRIENT_UNSPECIFIED|BIOTIN|CAFFEINE|CALCIUM|CHLORIDE|CARBOHYDRATES|CHOLESTEROL|CHROMIUM|COPPER|DIETARY_FIBER|FOLIC_ACID|IODINE|IRON|MAGNESIUM|MANGANESE|MOLYBDENUM|MONOUNSATURATED_FAT|NIACIN|PANTOTHEN,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.energy,EnergyQuantity,,0,,container,
+dataPoint.nutritionLog,nutritionLog.energy.kcal,number,double,0,,FILLED (opt-in),get_nutrition_daily_food_log:mealDetails[].mealNutritionContent.calories
+dataPoint.nutritionLog,nutritionLog.energy.userProvidedUnit,string,,6,ENERGY_UNIT_UNSPECIFIED|JOULE|KILOJOULE|KILOCALORIE|SMALL_CALORIE|CALORIE,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.totalFat,WeightQuantity,,0,,container,
+dataPoint.nutritionLog,nutritionLog.totalFat.grams,number,double,0,,FILLED (opt-in),get_nutrition_daily_food_log:mealDetails[].mealNutritionContent.fat
+dataPoint.nutritionLog,nutritionLog.totalFat.userProvidedUnit,string,,9,WEIGHT_UNIT_UNSPECIFIED|GRAM|KILOGRAM|OUNCE|POUND|STONE|MILLIGRAM|MICROGRAM|NANOGRAM,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.totalCarbohydrate,WeightQuantity,,0,,container,
+dataPoint.nutritionLog,nutritionLog.totalCarbohydrate.grams,number,double,0,,FILLED (opt-in),get_nutrition_daily_food_log:mealDetails[].mealNutritionContent.carbs
+dataPoint.nutritionLog,nutritionLog.totalCarbohydrate.userProvidedUnit,string,,9,WEIGHT_UNIT_UNSPECIFIED|GRAM|KILOGRAM|OUNCE|POUND|STONE|MILLIGRAM|MICROGRAM|NANOGRAM,"writable, no Garmin source",
+dataPoint.nutritionLog,nutritionLog.interval,SessionTimeInterval,,0,,container,
+dataPoint.nutritionLog,nutritionLog.interval.endTime,string,google-datetime,0,,FILLED (opt-in),get_nutrition_daily_food_log:mealDetails[].meal.endTime
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.date,Date,,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilEndTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.startTime,string,google-datetime,0,,FILLED (opt-in),get_nutrition_daily_food_log:mealDetails[].meal.startTime
+dataPoint.nutritionLog,nutritionLog.interval.endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.nutritionLog,nutritionLog.interval.startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.date,Date,,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.nutritionLog,nutritionLog.interval.civilStartTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.bodyFat,bodyFat.sampleTime.physicalTime,string,google-datetime,0,,FILLED,get_body_composition:dateWeightList[].timestampGMT; get_daily_weigh_ins:dateWeightList[].timestampGMT; get_weigh_ins:dailyWeightSummaries[].allWeightMetrics[].timestampGMT
+dataPoint.bodyFat,bodyFat.sampleTime.utcOffset,string,google-duration,0,,FILLED,get_body_composition:dateWeightList[].date; get_daily_weigh_ins:dateWeightList[].date; get_weigh_ins:dailyWeightSummaries[].allWeightMetrics[].date
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.bodyFat,bodyFat.percentage,number,double,0,,FILLED,get_body_composition:dateWeightList[].bodyFat; get_daily_weigh_ins:dateWeightList[].bodyFat; get_weigh_ins:dailyWeightSummaries[].allWeightMetrics[].bodyFat
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.lightSleepStats,RespiratoryRateSleepSummaryStatistics,,0,,container,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.lightSleepStats.standardDeviation,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.lightSleepStats.breathsPerMinute,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.lightSleepStats.signalToNoise,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime,ObservationSampleTime,,0,,container,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.physicalTime,string,google-datetime,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.utcOffset,string,google-duration,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime,CivilDateTime,,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.date,Date,,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.date.month,integer,int32,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.date.day,integer,int32,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.date.year,integer,int32,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.time,TimeOfDay,,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.time.minutes,integer,int32,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.time.hours,integer,int32,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.time.seconds,integer,int32,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.sampleTime.civilTime.time.nanos,integer,int32,0,,output-only,set by Google
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.remSleepStats,RespiratoryRateSleepSummaryStatistics,,0,,container,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.remSleepStats.standardDeviation,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.remSleepStats.breathsPerMinute,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.remSleepStats.signalToNoise,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.fullSleepStats,RespiratoryRateSleepSummaryStatistics,,0,,container,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.fullSleepStats.standardDeviation,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.fullSleepStats.breathsPerMinute,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.fullSleepStats.signalToNoise,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.deepSleepStats,RespiratoryRateSleepSummaryStatistics,,0,,container,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.deepSleepStats.standardDeviation,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.deepSleepStats.breathsPerMinute,number,double,0,,API type is read-only,
+dataPoint.respiratoryRateSleepSummary,respiratoryRateSleepSummary.deepSleepStats.signalToNoise,number,double,0,,API type is read-only,
+Profile,age,integer,int32,0,,FILLED (opt-in),get_user_profile:userData.birthDate
+Profile,autoRunningStrideLengthMm,integer,int32,0,,output-only,set by Google
+Profile,membershipStartDate,Date,,0,,output-only,set by Google
+Profile,membershipStartDate.month,integer,int32,0,,output-only,set by Google
+Profile,membershipStartDate.day,integer,int32,0,,output-only,set by Google
+Profile,membershipStartDate.year,integer,int32,0,,output-only,set by Google
+Profile,userConfiguredWalkingStrideLengthMm,integer,int32,0,,"writable, no Garmin source",
+Profile,autoWalkingStrideLengthMm,integer,int32,0,,output-only,set by Google
+Profile,userConfiguredRunningStrideLengthMm,integer,int32,0,,"writable, no Garmin source",
+Profile,name,string,,0,,"writable, no Garmin source",
+Settings,foodLanguageCode,string,,0,,output-only,set by Google
+Settings,autoStrideEnabled,boolean,,0,,"writable, no Garmin source",
+Settings,strideLengthWalkingType,string,,4,STRIDE_LENGTH_TYPE_UNSPECIFIED|STRIDE_LENGTH_TYPE_DEFAULT|STRIDE_LENGTH_TYPE_MANUAL|STRIDE_LENGTH_TYPE_AUTO,"writable, no Garmin source",
+Settings,distanceUnit,string,,3,DISTANCE_UNIT_UNSPECIFIED|DISTANCE_UNIT_MILES|DISTANCE_UNIT_KILOMETERS,FILLED (opt-in),get_user_profile:userData.measurementSystem
+Settings,name,string,,0,,"writable, no Garmin source",
+Settings,waterUnit,string,,4,WATER_UNIT_UNSPECIFIED|WATER_UNIT_ML|WATER_UNIT_FL_OZ|WATER_UNIT_CUP,"writable, no Garmin source",
+Settings,utcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+Settings,swimUnit,string,,3,SWIM_UNIT_UNSPECIFIED|SWIM_UNIT_METERS|SWIM_UNIT_YARDS,"writable, no Garmin source",
+Settings,heightUnit,string,,3,HEIGHT_UNIT_UNSPECIFIED|HEIGHT_UNIT_INCHES|HEIGHT_UNIT_CENTIMETERS,FILLED (opt-in),get_user_profile:userData.measurementSystem
+Settings,languageLocale,string,,0,,"writable, no Garmin source",
+Settings,timeZone,string,,0,,FILLED (opt-in),get_userprofile_settings:timeZone
+Settings,weightUnit,string,,4,WEIGHT_UNIT_UNSPECIFIED|WEIGHT_UNIT_POUNDS|WEIGHT_UNIT_STONE|WEIGHT_UNIT_KILOGRAMS,FILLED (opt-in),get_user_profile:userData.measurementSystem
+Settings,glucoseUnit,string,,3,GLUCOSE_UNIT_UNSPECIFIED|GLUCOSE_UNIT_MG_DL|GLUCOSE_UNIT_MMOL_L,"writable, no Garmin source",
+Settings,strideLengthRunningType,string,,4,STRIDE_LENGTH_TYPE_UNSPECIFIED|STRIDE_LENGTH_TYPE_DEFAULT|STRIDE_LENGTH_TYPE_MANUAL|STRIDE_LENGTH_TYPE_AUTO,"writable, no Garmin source",
+Settings,temperatureUnit,string,,3,TEMPERATURE_UNIT_UNSPECIFIED|TEMPERATURE_UNIT_CELSIUS|TEMPERATURE_UNIT_FAHRENHEIT,"writable, no Garmin source",
+Identity,name,string,,0,,API type is read-only,
+Identity,legacyUserId,string,,0,,output-only,set by Google
+Identity,healthUserId,string,,0,,output-only,set by Google
+PairedDevice,macAddress,string,,0,,output-only,set by Google
+PairedDevice,lastSyncTime,string,google-datetime,0,,output-only,set by Google
+PairedDevice,features[],array<string>,,0,,output-only,set by Google
+PairedDevice,batteryStatus,string,,0,,output-only,set by Google
+PairedDevice,batteryLevel,integer,int32,0,,output-only,set by Google
+PairedDevice,deviceType,string,,3,DEVICE_TYPE_UNSPECIFIED|TRACKER|SCALE,output-only,set by Google
+PairedDevice,name,string,,0,,API type is read-only,
+PairedDevice,deviceVersion,string,,0,,output-only,set by Google
+IrnProfile,onboardingStatus,boolean,,0,,API type is read-only,
+IrnProfile,enrollmentStatus,boolean,,0,,API type is read-only,
+IrnProfile,updateTime,string,google-datetime,0,,output-only,set by Google
+IrnProfile,name,string,,0,,API type is read-only,
