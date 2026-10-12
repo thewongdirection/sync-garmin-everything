@@ -1,6 +1,6 @@
 # Field map: Garmin Connect -> Google Health API / Health Connect
 
-_Generated from the field inventories and mapping rules (see `docs/field-map/README.md`). The CSVs next to this file contain every field._
+_Generated from the CSVs next to this file by `tools/field_map/generate_docs.py` (see `docs/field-map/README.md`). The CSVs contain every field._
 
 ## 1. Numbers
 
@@ -18,9 +18,9 @@ _Generated from the field inventories and mapping rules (see `docs/field-map/REA
 |---|---|
 | Google Health API write **and** Health Connect export | 77 |
 | Google Health API write | 92 |
-| Health Connect export only (Google cannot be written) | 106 |
+| Health Connect export only (Google cannot be written) | 102 |
 | Opt-in only (sensitive or changes your Google settings) | 18 |
-| Local archive only | 3546 |
+| Local archive only | 3550 |
 | Housekeeping (ids, containers, social) | 728 |
 
 **Google fields by status**
@@ -28,9 +28,9 @@ _Generated from the field inventories and mapping rules (see `docs/field-map/REA
 | Status | Google fields |
 |---|---|
 | Filled from a Garmin field | 61 |
-| Filled by derivation or a constant (e.g. UTC offsets) | 21 |
+| Filled by derivation or a constant (e.g. UTC offsets) | 19 |
 | Fillable, opt-in only | 18 |
-| Writable, but Garmin has nothing to put there | 64 |
+| Writable, but Garmin has nothing to put there | 66 |
 | Set by Google (cannot be written) | 620 |
 | Belongs to a data type the API does not let third parties write | 211 |
 
@@ -38,7 +38,7 @@ _Generated from the field inventories and mapping rules (see `docs/field-map/REA
 
 Only these data types accept `create` (verified in the Discovery document and the data-types page). Each table lists every field that is not output-only; civil-time echo fields are omitted because Google derives them.
 
-### `exercise`  (49 of 80 writable fields filled)
+### `exercise`  (47 of 80 writable fields filled)
 
 | Google field | Type | Status | Garmin source / note |
 |---|---|---|---|
@@ -74,54 +74,54 @@ Only these data types accept `create` (verified in the Discovery document and th
 | `exercise.metricsSummary.steps` | string:int64 | FILLED | activity: steps |
 | `exercise.metricsSummary.totalSwimLengths` | number:double | FILLED | activity: activeLengths |
 | `exercise.notes` | string | FILLED | activity: activityName<br> activity: description |
-| `exercise.splitSummaries[].endTime` | string:google-datetime | writable, no Garmin source |  |
+| `exercise.splitSummaries[].endTime` | string:google-datetime | FILLED | get_activity_splits:lapDTOs[].elapsedDuration |
 | `exercise.splitSummaries[].endUtcOffset` | string:google-duration | FILLED (derived/constant) | derived: user's UTC offset (Local - GMT) from the same Garmin record |
 | `exercise.splitSummaries[].metricsSummary.activeZoneMinutes` | string:int64 | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.averageHeartRateBeatsPerMinute` | string:int64 | writable, no Garmin source |  |
+| `exercise.splitSummaries[].metricsSummary.averageHeartRateBeatsPerMinute` | string:int64 | FILLED | get_activity_splits:lapDTOs[].averageHR |
 | `exercise.splitSummaries[].metricsSummary.averagePaceSecondsPerMeter` | number:double | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.averageSpeedMillimetersPerSecond` | number:double | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.caloriesKcal` | number:double | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.distanceMillimeters` | number:double | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.elevationGainMillimeters` | number:double | writable, no Garmin source |  |
+| `exercise.splitSummaries[].metricsSummary.averageSpeedMillimetersPerSecond` | number:double | FILLED | get_activity_splits:lapDTOs[].averageSpeed |
+| `exercise.splitSummaries[].metricsSummary.caloriesKcal` | number:double | FILLED | get_activity_splits:lapDTOs[].calories |
+| `exercise.splitSummaries[].metricsSummary.distanceMillimeters` | number:double | FILLED | get_activity_splits:lapDTOs[].distance |
+| `exercise.splitSummaries[].metricsSummary.elevationGainMillimeters` | number:double | FILLED | get_activity_splits:lapDTOs[].elevationGain |
 | `exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.lightTime` | string:google-duration | writable, no Garmin source |  |
 | `exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.moderateTime` | string:google-duration | writable, no Garmin source |  |
 | `exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.peakTime` | string:google-duration | writable, no Garmin source |  |
 | `exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.vigorousTime` | string:google-duration | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute` | number:double | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration` | string:google-duration | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters` | string:int64 | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters` | string:int64 | writable, no Garmin source |  |
-| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalRatio` | number:double | writable, no Garmin source |  |
+| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute` | number:double | FILLED | get_activity_splits:lapDTOs[].averageRunCadence |
+| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration` | string:google-duration | FILLED | get_activity_splits:lapDTOs[].groundContactTime |
+| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters` | string:int64 | FILLED | get_activity_splits:lapDTOs[].strideLength |
+| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters` | string:int64 | FILLED | get_activity_splits:lapDTOs[].verticalOscillation |
+| `exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalRatio` | number:double | FILLED | get_activity_splits:lapDTOs[].verticalRatio |
 | `exercise.splitSummaries[].metricsSummary.runVo2Max` | number:double | writable, no Garmin source |  |
 | `exercise.splitSummaries[].metricsSummary.steps` | string:int64 | writable, no Garmin source |  |
 | `exercise.splitSummaries[].metricsSummary.totalSwimLengths` | number:double | writable, no Garmin source |  |
-| `exercise.splitSummaries[].splitType` | string (SPLIT_TYPE_UNSPECIFIED, MANUAL, DURATION, DISTANCE, CALORIES) | writable, no Garmin source |  |
-| `exercise.splitSummaries[].startTime` | string:google-datetime | writable, no Garmin source |  |
+| `exercise.splitSummaries[].splitType` | string (SPLIT_TYPE_UNSPECIFIED, MANUAL, DURATION, DISTANCE, CALORIES) | FILLED (derived/constant) | constant: MANUAL (Garmin laps) |
+| `exercise.splitSummaries[].startTime` | string:google-datetime | FILLED | get_activity_splits:lapDTOs[].startTimeGMT |
 | `exercise.splitSummaries[].startUtcOffset` | string:google-duration | FILLED (derived/constant) | derived: user's UTC offset (Local - GMT) from the same Garmin record |
-| `exercise.splits[].endTime` | string:google-datetime | FILLED | get_activity_splits:lapDTOs[].elapsedDuration |
-| `exercise.splits[].endUtcOffset` | string:google-duration | FILLED (derived/constant) | derived: user's UTC offset (Local - GMT) from the same Garmin record |
+| `exercise.splits[].endTime` | string:google-datetime | writable, no Garmin source |  |
+| `exercise.splits[].endUtcOffset` | string:google-duration | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.activeZoneMinutes` | string:int64 | writable, no Garmin source |  |
-| `exercise.splits[].metricsSummary.averageHeartRateBeatsPerMinute` | string:int64 | FILLED | get_activity_splits:lapDTOs[].averageHR |
+| `exercise.splits[].metricsSummary.averageHeartRateBeatsPerMinute` | string:int64 | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.averagePaceSecondsPerMeter` | number:double | writable, no Garmin source |  |
-| `exercise.splits[].metricsSummary.averageSpeedMillimetersPerSecond` | number:double | FILLED | get_activity_splits:lapDTOs[].averageSpeed |
-| `exercise.splits[].metricsSummary.caloriesKcal` | number:double | FILLED | get_activity_splits:lapDTOs[].calories |
-| `exercise.splits[].metricsSummary.distanceMillimeters` | number:double | FILLED | get_activity_splits:lapDTOs[].distance |
-| `exercise.splits[].metricsSummary.elevationGainMillimeters` | number:double | FILLED | get_activity_splits:lapDTOs[].elevationGain |
+| `exercise.splits[].metricsSummary.averageSpeedMillimetersPerSecond` | number:double | writable, no Garmin source |  |
+| `exercise.splits[].metricsSummary.caloriesKcal` | number:double | writable, no Garmin source |  |
+| `exercise.splits[].metricsSummary.distanceMillimeters` | number:double | writable, no Garmin source |  |
+| `exercise.splits[].metricsSummary.elevationGainMillimeters` | number:double | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.heartRateZoneDurations.lightTime` | string:google-duration | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.heartRateZoneDurations.moderateTime` | string:google-duration | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.heartRateZoneDurations.peakTime` | string:google-duration | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.heartRateZoneDurations.vigorousTime` | string:google-duration | writable, no Garmin source |  |
-| `exercise.splits[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute` | number:double | FILLED | get_activity_splits:lapDTOs[].averageRunCadence |
-| `exercise.splits[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration` | string:google-duration | FILLED | get_activity_splits:lapDTOs[].groundContactTime |
-| `exercise.splits[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters` | string:int64 | FILLED | get_activity_splits:lapDTOs[].strideLength |
-| `exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters` | string:int64 | FILLED | get_activity_splits:lapDTOs[].verticalOscillation |
-| `exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalRatio` | number:double | FILLED | get_activity_splits:lapDTOs[].verticalRatio |
+| `exercise.splits[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute` | number:double | writable, no Garmin source |  |
+| `exercise.splits[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration` | string:google-duration | writable, no Garmin source |  |
+| `exercise.splits[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters` | string:int64 | writable, no Garmin source |  |
+| `exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters` | string:int64 | writable, no Garmin source |  |
+| `exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalRatio` | number:double | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.runVo2Max` | number:double | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.steps` | string:int64 | writable, no Garmin source |  |
 | `exercise.splits[].metricsSummary.totalSwimLengths` | number:double | writable, no Garmin source |  |
-| `exercise.splits[].splitType` | string (SPLIT_TYPE_UNSPECIFIED, MANUAL, DURATION, DISTANCE, CALORIES) | FILLED (derived/constant) | constant: MANUAL (Garmin laps) |
-| `exercise.splits[].startTime` | string:google-datetime | FILLED | get_activity_splits:lapDTOs[].startTimeGMT |
-| `exercise.splits[].startUtcOffset` | string:google-duration | FILLED (derived/constant) | derived: user's UTC offset (Local - GMT) from the same Garmin record |
+| `exercise.splits[].splitType` | string (SPLIT_TYPE_UNSPECIFIED, MANUAL, DURATION, DISTANCE, CALORIES) | writable, no Garmin source |  |
+| `exercise.splits[].startTime` | string:google-datetime | writable, no Garmin source |  |
+| `exercise.splits[].startUtcOffset` | string:google-duration | writable, no Garmin source |  |
 
 ### `sleep`  (13 of 15 writable fields filled)
 
@@ -293,18 +293,14 @@ These Garmin fields have no writable Google field, but Health Connect (Android, 
 | `FloorsClimbedRecord.floors` | `floorsAscended` | `get_stats`, `get_stats_and_body`, `get_user_summary` | daily interval; Google floors is read-only |
 | `HeartRateRecord.samples[]` | `heartRateValues[][]` | `get_heart_rates` | rows [epoch_ms, bpm\|null]; null = no reading; Google heart-rate is read-only |
 | `HeartRateRecord.samples[].beatsPerMinute` | `record.heart_rate` | `FIT:record` | bpm per second; Google heart-rate is read-only |
-| `HeartRateRecord.samples[].beatsPerMinute` | `sleepHeartRate[].value` | `get_sleep_data` | bpm; Google heart-rate is read-only |
-| `HeartRateRecord.samples[].time` | `sleepHeartRate[].startGMT` | `get_sleep_data` | ms epoch -> time |
 | `HeartRateVariabilityRmssdRecord.heartRateVariabilityMillis` | `beat_intervals.time` | `FIT:beat_intervals` | raw R-R intervals: derive RMSSD; Google equivalent is read-only |
 | `HeartRateVariabilityRmssdRecord.heartRateVariabilityMillis` | `beat_intervals.timestamp_ms` | `FIT:beat_intervals` | raw R-R intervals: derive RMSSD; Google equivalent is read-only |
 | `HeartRateVariabilityRmssdRecord.heartRateVariabilityMillis` | `hrv.time` | `FIT:hrv` | hrv.time = R-R intervals (s): derive RMSSD per 5 min; Google equivalent is read-only |
 | `HeartRateVariabilityRmssdRecord.heartRateVariabilityMillis` | `hrv_value.hrv_value` | `FIT:hrv_value` | hrv.time = R-R intervals (s): derive RMSSD per 5 min; Google equivalent is read-only |
 | `HeartRateVariabilityRmssdRecord.heartRateVariabilityMillis` | `hrv_value.value` | `FIT:hrv_value` | hrv.time = R-R intervals (s): derive RMSSD per 5 min; Google equivalent is read-only |
 | `HeartRateVariabilityRmssdRecord.heartRateVariabilityMillis` | `hrvReadings[].hrvValue` | `get_hrv_data` | ms; Google heart-rate-variability is read-only |
-| `HeartRateVariabilityRmssdRecord.heartRateVariabilityMillis` | `hrvData[].value` | `get_sleep_data` | ms (RMSSD basis); Google heart-rate-variability is read-only |
 | `HeartRateVariabilityRmssdRecord.time` | `hrv_value.timestamp` | `FIT:hrv_value` | FIT timestamp |
 | `HeartRateVariabilityRmssdRecord.time` | `hrvReadings[].readingTimeGMT` | `get_hrv_data` | ISO GMT string |
-| `HeartRateVariabilityRmssdRecord.time` | `hrvData[].startGMT` | `get_sleep_data` | ms epoch -> time |
 | `HeartRateVariabilityRmssdRecord.zoneOffset` | `hrvReadings[].readingTimeLocal` | `get_hrv_data` | (Local - GMT) |
 | `Metadata.clientRecordId` | `activityId` | `get_activities`, `get_activities_by_date`, `get_activity`, `get_last_activity` | stable id 'garmin:exercise:<id>'; Google exercise has no external-id field, so de-dup is by time overlap |
 | `Metadata.clientRecordId` | `samplePk` | `get_body_composition`, `get_daily_weigh_ins`, `get_weigh_ins` | 'garmin:weight:<samplePk>' |
@@ -504,7 +500,7 @@ These fields are still downloaded and kept in the local SQLite archive (so nothi
 | `get_scheduled_workout_by_id` | 1 | 0 | 0 | 0 | 0 | 1 |
 | `get_scheduled_workouts` | 80 | 0 | 0 | 0 | 65 | 15 |
 | `get_sleep_daily` | 3 | 0 | 0 | 0 | 1 | 2 |
-| `get_sleep_data` | 170 | 10 | 9 | 0 | 112 | 39 |
+| `get_sleep_data` | 170 | 10 | 5 | 0 | 116 | 39 |
 | `get_spo2_data` | 30 | 0 | 0 | 0 | 28 | 2 |
 | `get_stats` | 119 | 0 | 9 | 0 | 99 | 11 |
 | `get_stats_and_body` | 130 | 0 | 9 | 0 | 110 | 11 |

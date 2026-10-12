@@ -1,0 +1,54 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "garmin-sync"
+version = "0.1.0"
+description = "Claude skill and CLI that archives all Garmin Connect data and syncs what Google can accept to Google Health"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "MIT"
+dependencies = [
+    "garminconnect==0.3.17",  # unofficial and unversioned upstream: bump deliberately, with a lock refresh
+    "curl_cffi>=0.7,<1",
+    "requests>=2.32,<3",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8",
+    "ruff>=0.6",
+    "bandit>=1.7",
+    "pip-audit>=2.7",
+]
+
+[project.scripts]
+garmin-sync = "garmin_sync.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/garmin_sync"]
+
+[tool.uv]
+# A cooling-off period: nothing published in the last days is eligible, so a compromised or
+# broken fresh release cannot enter the lockfile (these packages run beside every secret).
+exclude-newer = "2026-10-02T00:00:00Z"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "SIM", "S", "C4", "PTH", "RET"]
+
+[tool.ruff.lint.per-file-ignores]
+# Tests may use assert, fixed fake credentials, and run git.
+"tests/**" = ["S101", "S105", "S106", "S603", "S607"]
+
+[tool.bandit]
+exclude_dirs = ["tests"]

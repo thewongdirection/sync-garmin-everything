@@ -492,34 +492,34 @@ dataPoint.exercise,exercise.activeDuration,string,google-duration,0,,FILLED,acti
 dataPoint.exercise,exercise.displayName,string,,0,,FILLED,activity: activityName
 dataPoint.exercise,exercise.updateTime,string,google-datetime,0,,output-only,set by Google
 dataPoint.exercise,exercise.splits[],array<SplitSummary>,,0,,container,
-dataPoint.exercise,exercise.splits[].startTime,string,google-datetime,0,,FILLED,get_activity_splits:lapDTOs[].startTimeGMT
-dataPoint.exercise,exercise.splits[].endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
+dataPoint.exercise,exercise.splits[].startTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].endUtcOffset,string,google-duration,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary,MetricsSummary,,0,,container,
 dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations,TimeInHeartRateZones,,0,,container,
 dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations.peakTime,string,google-duration,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations.moderateTime,string,google-duration,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations.lightTime,string,google-duration,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.heartRateZoneDurations.vigorousTime,string,google-duration,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splits[].metricsSummary.averageHeartRateBeatsPerMinute,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].averageHR
-dataPoint.exercise,exercise.splits[].metricsSummary.caloriesKcal,number,double,0,,FILLED,get_activity_splits:lapDTOs[].calories
+dataPoint.exercise,exercise.splits[].metricsSummary.averageHeartRateBeatsPerMinute,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.caloriesKcal,number,double,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.runVo2Max,number,double,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.activeZoneMinutes,string,int64,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics,MobilityMetrics,,0,,container,
-dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].verticalOscillation
-dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].strideLength
-dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalRatio,number,double,0,,FILLED,get_activity_splits:lapDTOs[].verticalRatio
-dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute,number,double,0,,FILLED,get_activity_splits:lapDTOs[].averageRunCadence
-dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration,string,google-duration,0,,FILLED,get_activity_splits:lapDTOs[].groundContactTime
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters,string,int64,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgVerticalRatio,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration,string,google-duration,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.averagePaceSecondsPerMeter,number,double,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splits[].metricsSummary.averageSpeedMillimetersPerSecond,number,double,0,,FILLED,get_activity_splits:lapDTOs[].averageSpeed
-dataPoint.exercise,exercise.splits[].metricsSummary.elevationGainMillimeters,number,double,0,,FILLED,get_activity_splits:lapDTOs[].elevationGain
+dataPoint.exercise,exercise.splits[].metricsSummary.averageSpeedMillimetersPerSecond,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].metricsSummary.elevationGainMillimeters,number,double,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.totalSwimLengths,number,double,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].metricsSummary.steps,string,int64,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splits[].metricsSummary.distanceMillimeters,number,double,0,,FILLED,get_activity_splits:lapDTOs[].distance
+dataPoint.exercise,exercise.splits[].metricsSummary.distanceMillimeters,number,double,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splits[].activeDuration,string,google-duration,0,,output-only,set by Google
-dataPoint.exercise,exercise.splits[].startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
-dataPoint.exercise,exercise.splits[].endTime,string,google-datetime,0,,FILLED,get_activity_splits:lapDTOs[].elapsedDuration
-dataPoint.exercise,exercise.splits[].splitType,string,,5,SPLIT_TYPE_UNSPECIFIED|MANUAL|DURATION|DISTANCE|CALORIES,FILLED (derived/constant),constant: MANUAL (Garmin laps)
+dataPoint.exercise,exercise.splits[].startUtcOffset,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].endTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splits[].splitType,string,,5,SPLIT_TYPE_UNSPECIFIED|MANUAL|DURATION|DISTANCE|CALORIES,"writable, no Garmin source",
 dataPoint.exercise,exercise.exerciseType,string,,182,EXERCISE_TYPE_UNSPECIFIED|AEROBIC_WORKOUT|ARCHERY|ASSAULT_BIKE|BACKPACKING|BADMINTON|BALLET|BALLROOM_DANCE|BARRE_CLASS|BASEBALL|BASKETBALL|BIKING|BILLIARDS|BODY_WEIGHT|BOOTCAMP|BOWLING|BOXING|BREAKDAN,FILLED,activity: activityType.typeKey; activity: activityTypeDTO.typeKey
 dataPoint.exercise,exercise.metricsSummary,MetricsSummary,,0,,container,
 dataPoint.exercise,exercise.metricsSummary.heartRateZoneDurations,TimeInHeartRateZones,,0,,container,
@@ -544,7 +544,7 @@ dataPoint.exercise,exercise.metricsSummary.totalSwimLengths,number,double,0,,FIL
 dataPoint.exercise,exercise.metricsSummary.steps,string,int64,0,,FILLED,activity: steps
 dataPoint.exercise,exercise.metricsSummary.distanceMillimeters,number,double,0,,FILLED,activity: distance
 dataPoint.exercise,exercise.splitSummaries[],array<SplitSummary>,,0,,container,
-dataPoint.exercise,exercise.splitSummaries[].startTime,string,google-datetime,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].startTime,string,google-datetime,0,,FILLED,get_activity_splits:lapDTOs[].startTimeGMT
 dataPoint.exercise,exercise.splitSummaries[].endUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary,MetricsSummary,,0,,container,
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations,TimeInHeartRateZones,,0,,container,
@@ -552,26 +552,26 @@ dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDuratio
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.moderateTime,string,google-duration,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.lightTime,string,google-duration,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.heartRateZoneDurations.vigorousTime,string,google-duration,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.averageHeartRateBeatsPerMinute,string,int64,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.caloriesKcal,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.averageHeartRateBeatsPerMinute,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].averageHR
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.caloriesKcal,number,double,0,,FILLED,get_activity_splits:lapDTOs[].calories
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.runVo2Max,number,double,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.activeZoneMinutes,string,int64,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics,MobilityMetrics,,0,,container,
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters,string,int64,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters,string,int64,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalRatio,number,double,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute,number,double,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration,string,google-duration,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalOscillationMillimeters,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].verticalOscillation
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgStrideLengthMillimeters,string,int64,0,,FILLED,get_activity_splits:lapDTOs[].strideLength
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgVerticalRatio,number,double,0,,FILLED,get_activity_splits:lapDTOs[].verticalRatio
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgCadenceStepsPerMinute,number,double,0,,FILLED,get_activity_splits:lapDTOs[].averageRunCadence
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.mobilityMetrics.avgGroundContactTimeDuration,string,google-duration,0,,FILLED,get_activity_splits:lapDTOs[].groundContactTime
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.averagePaceSecondsPerMeter,number,double,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.averageSpeedMillimetersPerSecond,number,double,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.elevationGainMillimeters,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.averageSpeedMillimetersPerSecond,number,double,0,,FILLED,get_activity_splits:lapDTOs[].averageSpeed
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.elevationGainMillimeters,number,double,0,,FILLED,get_activity_splits:lapDTOs[].elevationGain
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.totalSwimLengths,number,double,0,,"writable, no Garmin source",
 dataPoint.exercise,exercise.splitSummaries[].metricsSummary.steps,string,int64,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].metricsSummary.distanceMillimeters,number,double,0,,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].metricsSummary.distanceMillimeters,number,double,0,,FILLED,get_activity_splits:lapDTOs[].distance
 dataPoint.exercise,exercise.splitSummaries[].activeDuration,string,google-duration,0,,output-only,set by Google
 dataPoint.exercise,exercise.splitSummaries[].startUtcOffset,string,google-duration,0,,FILLED (derived/constant),derived: user's UTC offset (Local - GMT) from the same Garmin record
-dataPoint.exercise,exercise.splitSummaries[].endTime,string,google-datetime,0,,"writable, no Garmin source",
-dataPoint.exercise,exercise.splitSummaries[].splitType,string,,5,SPLIT_TYPE_UNSPECIFIED|MANUAL|DURATION|DISTANCE|CALORIES,"writable, no Garmin source",
+dataPoint.exercise,exercise.splitSummaries[].endTime,string,google-datetime,0,,FILLED,get_activity_splits:lapDTOs[].elapsedDuration
+dataPoint.exercise,exercise.splitSummaries[].splitType,string,,5,SPLIT_TYPE_UNSPECIFIED|MANUAL|DURATION|DISTANCE|CALORIES,FILLED (derived/constant),constant: MANUAL (Garmin laps)
 dataPoint.exercise,exercise.notes,string,,0,,FILLED,activity: activityName; activity: description
 dataPoint.exercise,exercise.exerciseEvents[],array<ExerciseEvent>,,0,,container,
 dataPoint.exercise,exercise.exerciseEvents[].eventTime,string,google-datetime,0,,FILLED,get_activity_splits:eventDTOs[].sectionTypeDTO.key; get_activity_splits:eventDTOs[].sectionTypeDTO.sectionTypeKey; get_activity_splits:eventDTOs[].startTimeGMT

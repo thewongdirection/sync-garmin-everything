@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Secrets and personal health data: NEVER commit ---
+# Runtime state normally lives in ~/.garmin-sync (outside the repo); these patterns
+# guard against it being pointed inside the repo via GARMIN_SYNC_HOME.
+.garmin-sync/
+.garminconnect/
+garmin_tokens.json
+google_token.json
+google_oauth_pending.json
+google_client*.json
+client_secret*.json
+credentials*.json
+token*.json
+*_token*.json
+*.sqlite
+*.sqlite3
+*.sqlite3-journal
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+# Interrupted atomic writes leave hidden *.tmp files next to the real one.
+.*.tmp
+cloud-env.txt
+# Hand-made copies of the above (a pasted environment, a backup) are just as sensitive.
+*.env
+*-env.*
+*.bak
+*.backup
+secret*.json
+secrets.*
+exports/
+*.jsonl
+fit/
+*.fit
+*.fit.zip
+*.tcx
+*.gpx
+your_data/
+cassettes/
+.env
+.env.*
+!.env.example
+*.pem
+*.key

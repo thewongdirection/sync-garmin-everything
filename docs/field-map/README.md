@@ -5,7 +5,7 @@
 | [FIELD-MAP.md](FIELD-MAP.md) | Readable map: numbers, one table per Google-writable data type, the Health Connect-only table, and the archive-only breakdown. Generated. |
 | [garmin-fields.csv](garmin-fields.csv) | **Every Garmin field** (4,567 documented fields across 158 methods and FIT message types, plus 10 methods with no field evidence): type, unit, meaning, confidence, evidence, and its destination (`tier`, `google_target`, `hc_target`, `transform`, `reason`). |
 | [google-fields.csv](google-fields.csv) | **Every Google Health API v4 payload field** (1,082 across 48 data types plus Profile/Settings/Identity/PairedDevice), with `status` (FILLED / opt-in / no Garmin source / output-only / read-only type) and the Garmin fields that fill it. |
-| _(not in this PR)_ `tools/field_map/` | The scripts and the hand-written `mapping_rules.py` that produce the CSVs. They are held back until they are cleaned up or folded into the real `inventory` command. |
+| `tools/field_map/generate_docs.py` | Regenerates `FIELD-MAP.md` from the two CSVs. The CSVs are the source of truth: edit a row, run the script. The classification was first produced by hand-written rules over scratch evidence files that are not kept; `garmin-sync inventory` is how new fields are found from now on. |
 
 ## Destination tiers (`tier` column)
 
@@ -47,3 +47,11 @@ returns raw JSON, so the inventory is assembled from independent evidence, each 
    need your confirmation or a real-account check.
 4. Garmin Connect already syncs some data to Google. The Google sink skips anything Google already holds, so
    "FILLED" means *eligible*, not *will always be written*.
+
+## What the code implements today
+
+The map says where each field *can* go. The first release implements all of the Google-writable and
+Health Connect-exportable fields that come from the regular JSON endpoints. Not yet implemented:
+fields that exist only in downloaded FIT files (GPS routes, per-second heart rate, speed, power, cadence),
+intraday floors, the opt-in tier (`GO`: nutrition, cycle tracking, height, profile and settings), and the
+Garmin device display name. Pause/resume events are sent only when every event key is recognised.
