@@ -61,6 +61,10 @@ class AppHome:
         return self.root / "google_oauth_pending.json"
 
     @property
+    def settings_file(self) -> Path:
+        return self.root / "settings.json"
+
+    @property
     def archive_file(self) -> Path:
         return self.root / "archive.sqlite3"
 

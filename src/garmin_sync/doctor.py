@@ -6,11 +6,13 @@ authenticated call to each service.
 
 from __future__ import annotations
 
-from collections.abc import Callable
+import os
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from datetime import date, timedelta
 from typing import Any
 
+from garmin_sync import usertime
 from garmin_sync.archive import Archive
 from garmin_sync.garmin_source import (
     TOKEN_FILENAME,
@@ -20,13 +22,17 @@ from garmin_sync.garmin_source import (
     RateLimited,
     login_from_tokens,
 )
+from garmin_sync.models import utc_now
 from garmin_sync.paths import HOME_MARKER, AppHome, is_private
 from garmin_sync.sanitize import clean
 from garmin_sync.sinks import google_auth
 from garmin_sync.sinks.google_client import GoogleApiError, GoogleClient
+from garmin_sync.timeutil import offset_seconds
 
 OK, WARN, FAIL = "ok", "warn", "fail"
 _STALE_AFTER = timedelta(days=3)
+_UTC = usertime.load_zone("UTC")
+_TZ_LOOKBACK_DAYS = 6
 
 
 @dataclass(frozen=True)
@@ -56,12 +62,64 @@ def run_doctor(
     http: Any,
     garmin_login: Callable[..., GarminSource] = login_from_tokens,
     today: date | None = None,
+    env: Mapping[str, str] | None = None,
 ) -> list[Check]:
-    checks = [_check_home(home)]
+    zone_check, zone = _check_timezone(home, os.environ if env is None else env)
+    checks = [_check_home(home), zone_check]
     checks += _check_garmin(home, online, garmin_login)
     checks += _check_google(home, online, http)
-    checks.append(_check_archive(home, today or date.today()))
+    checks.append(_check_archive(home, today or usertime.today_in(zone or _UTC)))
     return checks
+
+
+def _check_timezone(
+    home: AppHome, env: Mapping[str, str]
+) -> tuple[Check, usertime.UserZone | None]:
+    """Whether "today" can be trusted: the zone must be set, and agree with what Garmin reports."""
+    saved = usertime.read_saved_zone(home.settings_file)
+    try:
+        zone = usertime.resolve_zone(env, saved, use_system=True)
+    except usertime.TimezoneError as exc:
+        return Check("timezone", FAIL, clean(exc), usertime.ASK), None
+    if zone is None:
+        message = "not set (this machine's zone is UTC or unknown, so 'today' would be wrong)"
+        return Check("timezone", FAIL, message, usertime.ASK), None
+    label = zone.describe(utc_now())
+    if zone.source is usertime.Source.SYSTEM:
+        fix = f"Confirm with the user, then run `garmin-sync timezone {zone.name}`"
+        return Check(
+            "timezone", WARN, f"{label}, taken from this machine; not confirmed", fix
+        ), zone
+    off = _offset_mismatch(home, zone)
+    if off:
+        message = f"{label}, but Garmin's UTC offset differs on {len(off)} recent day(s)"
+        fix = "If the user has been travelling this is expected; otherwise correct the zone"
+        return Check("timezone", WARN, message, fix), zone
+    return Check("timezone", OK, label), zone
+
+
+def _offset_mismatch(home: AppHome, zone: usertime.UserZone) -> list[str]:
+    if not home.archive_file.exists():
+        return []
+    with Archive.open(home.archive_file) as archive:
+        newest = archive.latest_key("user_summary")
+        if newest is None:
+            return []
+        offsets = _recent_offsets(archive, date.fromisoformat(newest))
+    return usertime.mismatched_days(zone, offsets)
+
+
+def _recent_offsets(archive: Archive, newest: date) -> dict[str, int]:
+    found = {}
+    first = (newest - timedelta(days=_TZ_LOOKBACK_DAYS)).isoformat()
+    for key, payload in archive.iter_raw("user_summary", first, newest.isoformat()):
+        if isinstance(payload, dict):
+            offset = offset_seconds(
+                payload.get("wellnessStartTimeLocal"), payload.get("wellnessStartTimeGmt")
+            )
+            if offset is not None:
+                found[key] = offset
+    return found
 
 
 def _check_home(home: AppHome) -> Check:

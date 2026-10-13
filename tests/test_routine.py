@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import tempfile
 from collections import Counter
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 from pathlib import Path
 from typing import Any
 
@@ -34,6 +34,7 @@ TODAY = date(2024, 5, 3)
 NOW = datetime(2024, 5, 3, 15, 0, tzinfo=UTC)
 SECRETS = {
     # fake sentinel values, never real credentials
+    "GARMIN_SYNC_TIMEZONE": "America/New_York",  # the fixtures are UTC-4 data
     "GARMIN_SYNC_GARMIN_TOKENS": (  # pragma: allowlist secret
         '{"di_token":"GARMIN-TOKEN-SENTINEL","di_refresh_token":"R1"}'  # pragma: allowlist secret
     ),
@@ -436,3 +437,122 @@ def test_an_unexpected_error_still_ends_in_a_status_not_a_traceback(
     assert result.status is routine.Status.FAILED and result.exit_code == exitcodes.ERROR
     assert "RuntimeError" in result.detail and "SENTINEL" not in result.detail  # type only
     assert result.summary["apply"] is True
+
+
+# -- time zone --------------------------------------------------------------------------------
+
+SINGAPORE = {"GARMIN_SYNC_TIMEZONE": "Asia/Singapore"}
+# 07:07 in Singapore on 4 May is still the evening of 3 May in UTC, where the cloud machine runs.
+MORNING_RUN = datetime(2024, 5, 3, 23, 7, tzinfo=UTC)
+
+
+def run_at(moment: datetime, zone_env: dict[str, str], api: FakeGarmin | None = None):
+    """The routine as the scheduler runs it: no explicit ``today``, only the clock and the zone."""
+    return routine.run_routine(
+        {**SECRETS, **zone_env},
+        http=FakeGoogle().http,
+        garmin_login=login_with(api or garmin_api()),
+        now=moment,
+    )
+
+
+def singapore_days(day: str) -> dict[str, Any]:
+    previous = (date.fromisoformat(day) - timedelta(days=1)).isoformat()
+    return {
+        "calendarDate": day,
+        "wellnessStartTimeGmt": f"{previous}T16:00:00.0",
+        "wellnessStartTimeLocal": f"{day}T00:00:00.0",
+    }
+
+
+def test_a_missing_zone_is_refused_and_says_to_ask_the_user() -> None:
+    without = {k: v for k, v in SECRETS.items() if k != "GARMIN_SYNC_TIMEZONE"}
+    result = run(without)
+    assert result.status is routine.Status.MISCONFIGURED and result.exit_code == exitcodes.ERROR
+    assert "GARMIN_SYNC_TIMEZONE" in result.detail and "Ask the user" in result.detail
+    assert run(env(GARMIN_SYNC_TIMEZONE="  ")).status is routine.Status.MISCONFIGURED
+
+
+@pytest.mark.parametrize("value", ["SGT", "UTC+8", "EST", "Etc/GMT-8", "Asia/Nowhere", "../etc"])
+def test_an_ambiguous_or_unknown_zone_is_refused(value: str) -> None:
+    result = run(env(GARMIN_SYNC_TIMEZONE=value))
+    assert result.status is routine.Status.MISCONFIGURED
+    assert "GARMIN_SYNC_TIMEZONE" in result.detail and "IANA" in result.detail
+
+
+def test_the_window_ends_on_the_users_today_not_the_machines() -> None:
+    """Regression: `date.today()` on a UTC machine made the 07:07 SGT run stop a day short."""
+    singapore = run_at(MORNING_RUN, SINGAPORE)
+    assert singapore.summary["range"] == "2024-05-02..2024-05-04"
+    assert singapore.summary["timezone"] == "Asia/Singapore"
+    new_york = run_at(MORNING_RUN, {"GARMIN_SYNC_TIMEZONE": "America/New_York"})
+    assert new_york.summary["range"] == "2024-05-01..2024-05-03"
+
+
+def test_garmin_is_asked_for_the_users_today() -> None:
+    api = garmin_api()
+    run_at(MORNING_RUN, SINGAPORE, api)
+    asked = {args[0] for name, args in api.calls if name == "get_user_summary"}
+    assert asked == {"2024-05-02", "2024-05-03", "2024-05-04"}
+
+
+def test_the_evening_run_is_the_same_day_in_singapore() -> None:
+    evening = datetime(2024, 5, 4, 11, 7, tzinfo=UTC)  # 19:07 SGT
+    assert run_at(evening, SINGAPORE).summary["range"] == "2024-05-02..2024-05-04"
+
+
+def test_data_that_agrees_with_the_zone_raises_no_flag() -> None:
+    api = garmin_api()
+    api.responses["get_user_summary"] = singapore_days
+    result = run_at(MORNING_RUN, SINGAPORE, api)
+    assert result.summary["timezone_mismatch_days"] == []
+    assert "UTC offset" not in result.detail
+
+
+def test_garmin_reporting_another_offset_makes_the_run_partial_not_silently_fine() -> None:
+    """The fixtures are UTC-4 days; a Singapore setting contradicts them, so the run says so."""
+    result = run_at(MORNING_RUN, SINGAPORE)
+    assert result.status is routine.Status.PARTIAL
+    assert result.summary["timezone_mismatch_days"]
+    assert "Asia/Singapore" in result.detail and "travelling" in result.detail
+
+
+def test_a_rejected_zone_value_is_never_echoed() -> None:
+    """Regression: a secret pasted into the zone variable came back in the status detail."""
+    pasted = "1//0gSECRETREFRESHTOKENVALUE-abcdefghijklmnop"  # pragma: allowlist secret
+    result = run(env(GARMIN_SYNC_TIMEZONE=pasted))
+    assert result.status is routine.Status.MISCONFIGURED
+    assert "GARMIN_SYNC_TIMEZONE" in result.detail and "SECRET" not in result.detail
+
+
+def test_the_routine_hands_the_users_today_to_the_pull(monkeypatch: pytest.MonkeyPatch) -> None:
+    """Regression: `pull` fell back to the machine's date (UTC) for snapshot endpoints."""
+    seen = []
+    real_pull = routine.pull
+
+    def spy(*args, **kwargs):
+        seen.append(kwargs.get("today"))
+        return real_pull(*args, **kwargs)
+
+    monkeypatch.setattr(routine, "pull", spy)
+    run_at(MORNING_RUN, SINGAPORE)
+    assert seen == [date(2024, 5, 4)]
+
+
+def test_a_trip_that_only_touches_the_newest_days_is_reported_but_not_a_failure() -> None:
+    api = garmin_api()
+    api.responses["get_user_summary"] = lambda day: (
+        singapore_days(day) if day == "2024-05-02" else user_summary_payload(day)
+    )
+    result = run_at(MORNING_RUN, SINGAPORE, api)
+    assert result.summary["timezone_checked_days"] == 3
+    assert result.summary["timezone_mismatch_days"] == ["2024-05-03", "2024-05-04"]
+    assert "UTC offset" not in result.detail
+
+
+def test_nothing_to_check_is_visible_not_mistaken_for_agreement() -> None:
+    api = garmin_api()
+    api.responses["get_user_summary"] = {}
+    result = run_at(MORNING_RUN, SINGAPORE, api)
+    assert result.summary["timezone_checked_days"] == 0
+    assert result.summary["timezone_mismatch_days"] == []

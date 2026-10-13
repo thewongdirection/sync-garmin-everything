@@ -18,7 +18,7 @@ from typing import Any
 
 import requests
 
-from garmin_sync import auth_commands, exitcodes, routine
+from garmin_sync import auth_commands, exitcodes, routine, usertime
 from garmin_sync.archive import Archive
 from garmin_sync.doctor import next_action, run_doctor
 from garmin_sync.endpoints import ESSENTIAL
@@ -146,6 +146,9 @@ def build_parser() -> argparse.ArgumentParser:
     google_sub.add_parser("check", help="verify the saved Google login")
     auth_sub.add_parser("export-cloud-env", help="write the cloud routine's variables to a file")
 
+    zone = sub.add_parser("timezone", help="show or set your time zone (needed for 'today')")
+    zone.add_argument("name", nargs="?", help="IANA name, for example Asia/Singapore")
+
     doctor = sub.add_parser("doctor", help="check everything and say what to do next")
     doctor.add_argument("--offline", action="store_true", help="skip the online checks")
 
@@ -185,9 +188,22 @@ def build_parser() -> argparse.ArgumentParser:
     return parser
 
 
-def resolve_range(args: argparse.Namespace, today: date | None = None) -> tuple[date, date]:
-    """Validate and resolve ``--days`` / ``--since`` / ``--until`` to ``(start, end)``."""
-    today = today or date.today()
+def _today(home: AppHome) -> date:
+    """The date it is for the user (not for this machine), or an error that says to ask them."""
+    zone = usertime.require_zone(os.environ, usertime.read_saved_zone(home.settings_file))
+    if zone.source is usertime.Source.SYSTEM:
+        _log(
+            f"note: using this machine's time zone ({zone.name}), which is only a guess; confirm "
+            f"it with the user, then run `garmin-sync timezone {zone.name}`"
+        )
+    return usertime.today_in(zone)
+
+
+def resolve_range(args: argparse.Namespace, today: date) -> tuple[date, date]:
+    """Validate and resolve ``--days`` / ``--since`` / ``--until`` to ``(start, end)``.
+
+    ``today`` is the date in the user's own time zone, not the machine's.
+    """
     if args.days and args.since:
         raise CliError("use either --days or --since, not both")
     try:
@@ -231,8 +247,29 @@ def cmd_auth(args: argparse.Namespace, home: AppHome) -> int:
     return exitcodes.OK
 
 
+def cmd_timezone(args: argparse.Namespace, home: AppHome) -> int:
+    """Show the zone in use, or save one (validated) so every later command agrees on 'today'."""
+    now = utc_now()
+    if args.name:
+        home.ensure()
+        zone = usertime.save_zone(home.settings_file, args.name)
+        if os.environ.get(usertime.ENV_TIMEZONE, "").strip():
+            _log(f"warning: {usertime.ENV_TIMEZONE} is set and still takes precedence over this")
+        if args.json:
+            _emit({"timezone": zone.name, "saved": True}, True, "")
+        _log(f"Time zone saved: {zone.describe(now)}")
+        return exitcodes.OK
+    zone = usertime.require_zone(os.environ, usertime.read_saved_zone(home.settings_file))
+    _emit(
+        {"timezone": zone.name, "source": zone.source},
+        args.json,
+        f"{zone.describe(now)}, from {zone.source}; today there is {usertime.today_in(zone, now)}",
+    )
+    return exitcodes.OK
+
+
 def cmd_doctor(args: argparse.Namespace, home: AppHome) -> int:
-    checks = run_doctor(home, online=not args.offline, http=requests.Session())
+    checks = run_doctor(home, online=not args.offline, http=requests.Session(), env=os.environ)
     action = next_action(checks)
     payload = {"checks": [c.to_dict() for c in checks], "next_action": action}
     lines = [f"[{c.status:4}] {c.name}: {c.message}" for c in checks]
@@ -252,9 +289,9 @@ def _pull_exit_code(report: dict[str, Any]) -> int:
     return exitcodes.INCOMPLETE if ESSENTIAL & report["failed"].keys() else exitcodes.OK
 
 
-def _run_pull(args: argparse.Namespace, home: AppHome) -> tuple[dict[str, Any], str]:
+def _run_pull(args: argparse.Namespace, home: AppHome, today: date) -> tuple[dict[str, Any], str]:
     """Archive the requested range; returns the report dict and a text summary."""
-    start, end = resolve_range(args)
+    start, end = resolve_range(args, today)
     only = [name.strip() for name in args.only.split(",")] if getattr(args, "only", None) else None
     home.ensure()
     source = login_from_tokens(home, delay_s=args.delay)
@@ -267,6 +304,7 @@ def _run_pull(args: argparse.Namespace, home: AppHome) -> tuple[dict[str, Any], 
                 end,
                 only=only,
                 force=getattr(args, "force", False),
+                today=today,
                 fit_dir=home.fit_dir if args.with_fit else None,
                 progress=_log,
             )
@@ -276,7 +314,7 @@ def _run_pull(args: argparse.Namespace, home: AppHome) -> tuple[dict[str, Any], 
 
 
 def cmd_pull(args: argparse.Namespace, home: AppHome) -> int:
-    report, text = _run_pull(args, home)
+    report, text = _run_pull(args, home, _today(home))
     _emit(report, args.json, text)
     return _pull_exit_code(report)
 
@@ -301,10 +339,10 @@ def _parse_metrics(raw: str | None) -> set[Metric] | None:
 
 
 def _push_to(
-    sink_names: Sequence[str], args: argparse.Namespace, home: AppHome
+    sink_names: Sequence[str], args: argparse.Namespace, home: AppHome, today: date
 ) -> tuple[dict[str, Any], int]:
     """Push to each sink; returns the results and the worst exit code."""
-    start, end = resolve_range(args)
+    start, end = resolve_range(args, today)
     metrics = _parse_metrics(args.metrics)
     home.ensure()
     results: dict[str, Any] = {"range": f"{start}..{end}"}
@@ -336,18 +374,19 @@ def _push_to(
 
 
 def cmd_push(args: argparse.Namespace, home: AppHome) -> int:
-    results, code = _push_to([args.sink], args, home)
+    results, code = _push_to([args.sink], args, home, _today(home))
     _emit(results, args.json, _format_push(results))
     return code
 
 
 def cmd_sync(args: argparse.Namespace, home: AppHome) -> int:
-    pull_report, pull_text = _run_pull(args, home)
+    today = _today(home)  # once, so a run across midnight pulls and pushes the same days
+    pull_report, pull_text = _run_pull(args, home, today)
     code = _pull_exit_code(pull_report)
     if pull_report["aborted"]:
         _emit({"pull": pull_report}, args.json, pull_text)
         return code
-    push_results, push_code = _push_to(args.sinks, args, home)
+    push_results, push_code = _push_to(args.sinks, args, home, today)
     _emit(
         {"pull": pull_report, "push": push_results},
         args.json,
@@ -367,7 +406,7 @@ def cmd_routine(args: argparse.Namespace, home: AppHome) -> int:
 def cmd_status(args: argparse.Namespace, home: AppHome) -> int:
     archive = Archive.open(home.archive_file) if home.archive_file.exists() else None
     try:
-        summary = status_summary(home, archive)
+        summary = status_summary(home, archive, os.environ)
     finally:
         if archive:
             archive.close()
@@ -477,6 +516,7 @@ def _format_coverage(rows: list[dict[str, Any]]) -> str:
 
 _COMMANDS = {
     "auth": cmd_auth,
+    "timezone": cmd_timezone,
     "doctor": cmd_doctor,
     "pull": cmd_pull,
     "push": cmd_push,
@@ -491,6 +531,7 @@ _COMMANDS = {
 _EXPECTED_ERRORS: tuple[tuple[type[BaseException], int], ...] = (
     (CliError, exitcodes.ERROR),
     (UnsafeHomeError, exitcodes.ERROR),
+    (usertime.TimezoneError, exitcodes.ERROR),
     (AuthRequired, exitcodes.AUTH),
     (google_auth.GoogleAuthError, exitcodes.AUTH),
     (RateLimited, exitcodes.INCOMPLETE),

@@ -16,6 +16,10 @@ https://code.claude.com/docs/en/cloud-environments#network-access. Names below a
 * This repo's default branch must contain the package and skill (merge the PR first).
 * Local logins work: `garmin-sync doctor` shows no failures, and the Google OAuth app is **In
   production** (see [setup-google.md](setup-google.md)).
+* Your **time zone** is saved: `garmin-sync timezone` shows it (if not, ask the user, then
+  `garmin-sync timezone Asia/Singapore` or their own zone). The cloud machine runs in UTC, so
+  without this setting the routine would stop a day short of "today" for anyone ahead of UTC; it
+  refuses to run (`MISCONFIGURED`) rather than guess.
 * Treat everything put in the routine's environment as **readable by the agent and by anyone who can
   use that environment**. Use a dedicated environment only you use.
 
@@ -34,8 +38,9 @@ issues a new one. Learn both before building anything else.
    `diauth.garmin.com`, `connectapi.garmin.com`, `health.googleapis.com`, `oauth2.googleapis.com`.
    *Setup script*: `pip install uv && uv sync --frozen --no-dev` (installs exactly the versions in the
    committed `uv.lock`, which has hashes; a bare `pip install -e .` would resolve fresh, unpinned
-   versions of libraries that run next to every secret). *Environment variables*: the five lines from
-   the file, plus `GARMIN_SYNC_APPLY=0`. Remove all connectors.
+   versions of libraries that run next to every secret). *Environment variables*: the six lines from
+   the file (the five logins plus `GARMIN_SYNC_TIMEZONE`, which is not secret), plus
+   `GARMIN_SYNC_APPLY=0`. Remove all connectors.
 3. Start a session in that environment on this repo and ask it only to run
    `.venv/bin/garmin-sync routine`. Read the first line and the JSON:
    * `STATUS: DRY_RUN` and `garmin_token_rotated: false` → the stateless design works.
@@ -51,10 +56,15 @@ issues a new one. Learn both before building anything else.
 
 * Environment: the one from the spike (or a copy). **No connectors.** Notifications on, so a failed
   run reaches you; a "green" run does not mean the sync succeeded, so the status word matters.
-* Variables: the five from `cloud-env.txt`, plus `GARMIN_SYNC_APPLY=0`. Optional:
-  `GARMIN_SYNC_DAYS` (2–7, default 3) and `GARMIN_SYNC_MAX_WRITES` (1–200, default 50).
+* Variables: the six from `cloud-env.txt` (including `GARMIN_SYNC_TIMEZONE`), plus
+  `GARMIN_SYNC_APPLY=0`. Optional: `GARMIN_SYNC_DAYS` (2–7, default 3) and `GARMIN_SYNC_MAX_WRITES`
+  (1–200, default 50).
 * Schedule: twice a day at the times you choose, **not on the hour** (runs on the hour can start
-  late), for example 07:07 and 19:07 in your time zone. The minimum interval is one hour.
+  late), for example 07:07 and 19:07 **in your time zone**. The minimum interval is one hour.
+  Cron fields are **UTC** unless the expression starts with `CRON_TZ=<zone> `, so write the zone in
+  explicitly. For Singapore: `CRON_TZ=Asia/Singapore 7 7,19 * * *` (the same as `7 11,23 * * *` in
+  UTC: 19:07 and 07:07 SGT). Use the same zone as `GARMIN_SYNC_TIMEZONE`; if the routine screen has
+  its own time-zone picker, set that too and check the "next run" it shows.
 * Prompt (exactly this; nothing secret belongs in it):
 
   > Run `.venv/bin/garmin-sync routine` from the repository root and show its full output. If the first line
@@ -89,10 +99,10 @@ same command from a scheduler where the secrets are never exposed to a model (se
 | `OK` | 0 | synced |
 | `DRY_RUN` | 0 | nothing written (writes are off) |
 | `PAUSED` | 0 | kill switch is on |
-| `PARTIAL` | 4 | something failed, records were held back until their data is complete, or Garmin rotated its token; read the detail |
+| `PARTIAL` | 4 | something failed, records were held back until their data is complete, Garmin rotated its token, or Garmin's UTC offset differs from `GARMIN_SYNC_TIMEZONE` on *every* recent day (moved, travelling for a while, or the zone is wrong: ask the user); read the detail. A trip's first days alone only appear in the JSON as `timezone_mismatch_days` |
 | `RATE_LIMITED`, `UNREACHABLE` | 4 | try again next run |
 | `AUTH_REQUIRED` | 3 | a login expired: run `auth garmin` / `auth google login`, re-export, update the variables |
-| `MISCONFIGURED` | 1 | a variable is missing or out of range (named, never shown) |
+| `MISCONFIGURED` | 1 | a variable is missing or out of range (named, never shown). A missing or invalid `GARMIN_SYNC_TIMEZONE` lands here: ask the user which zone they are in |
 | `FAILED` | 1 | an unexpected error; the line names its type only |
 
 ## If the token rotates, or Garmin blocks the cloud

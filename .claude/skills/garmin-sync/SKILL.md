@@ -51,6 +51,26 @@ ends with **Next: <the one thing to do>**. Do that, then run it again. Install f
 missing: from the repo root `uv sync --frozen` (installs exactly the versions in `uv.lock`), or
 `python3.12 -m venv .venv && . .venv/bin/activate && pip install -e .`.
 
+### Time zone: ask, never guess
+
+"Today", the routine's look-back window and the archive's freshness check all depend on the user's
+own calendar day, and a cloud machine's clock is UTC: at 07:07 in Singapore it is still yesterday
+there. So the zone is an explicit setting. The machine's own zone is only a guess (commands use it
+but say so), and the locale and the Garmin data are never used to choose it.
+
+* `garmin-sync timezone` shows the zone in use. The doctor's `timezone` row must be **ok**.
+* If the zone is **not set**, is **invalid**, or is only **"taken from this machine; not
+  confirmed"**: stop and **ask the user which time zone they are in** (a city is best). Repeat the
+  IANA name back ("Asia/Singapore, UTC+08:00: right?") before saving it with
+  `garmin-sync timezone <name>`. Offsets and abbreviations are ambiguous (`SGT`, `EST`, `UTC+8` are
+  refused); pick the `Region/City` name that fits their answer, and if several fit, ask. For
+  example, "SGT, UTC+8" is `Asia/Singapore`, but confirm it instead of assuming it.
+* A doctor **warn** that "Garmin's UTC offset differs" means the zone setting disagrees with what the
+  watch reports on some recent days. Ask whether the user has been travelling or has moved; correct
+  the zone if so. The cloud routine goes `PARTIAL` only when *every* recent day disagrees.
+* The cloud routine needs the same zone as `GARMIN_SYNC_TIMEZONE` (`auth export-cloud-env` writes it
+  from the saved setting) and a schedule written in that zone. If the user moves, both change.
+
 ## Step 2: authentication (the user types the secrets)
 
 ### Garmin
@@ -100,7 +120,7 @@ Garmin unreachable, part of the work failed).
 
 ## Step 4: the twice-daily cloud routine
 
-Read [references/setup-cloud-routine.md](references/setup-cloud-routine.md) and follow it in order:
+Confirm the time zone first (above), then read [references/setup-cloud-routine.md](references/setup-cloud-routine.md) and follow it in order:
 **spike → dry-run routine → review → enable writes.** Do not skip the spike (it answers whether Garmin
 works from the cloud and whether its refresh token rotates, which decides if the stateless design
 works). The routine runs `garmin-sync routine`, configured only by environment variables, and prints a

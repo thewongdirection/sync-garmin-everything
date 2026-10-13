@@ -7,6 +7,7 @@ from pathlib import Path
 
 import pytest
 
+from garmin_sync import usertime
 from garmin_sync.archive import Archive
 from garmin_sync.garmin_source import GarminSource
 from garmin_sync.models import Metric, Record
@@ -14,6 +15,8 @@ from garmin_sync.paths import AppHome
 from tests.helpers import EDT, FakeGarmin
 
 NOW = datetime(2024, 5, 10, 15, 0, tzinfo=UTC)
+# Matches the fixtures' UTC-4 data (New York in May); SGT cases build their own data.
+USER_ZONE = "America/New_York"
 
 
 class FakeClock:
@@ -37,7 +40,25 @@ def _isolated_env(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     monkeypatch.setenv("HOME", str(tmp_path / "fakehome"))
     for name in ("GARMIN_SYNC_HOME", "GARMINTOKENS", "GARMIN_EMAIL", "GARMIN_PASSWORD"):
         monkeypatch.delenv(name, raising=False)
+    # The user's zone is stated, never read from the machine running the tests.
+    monkeypatch.setenv(usertime.ENV_TIMEZONE, USER_ZONE)
+    monkeypatch.setattr(usertime, "system_zone_name", lambda: None)
     os.umask(0o022)
+
+
+@pytest.fixture
+def freeze_time(monkeypatch: pytest.MonkeyPatch):
+    """``freeze_time(moment)``: what the user-time code sees as "now" (a timezone-aware moment)."""
+
+    def freeze(moment: datetime) -> None:
+        class Frozen(datetime):
+            @classmethod
+            def now(cls, tz=None):  # type: ignore[override]
+                return moment.astimezone(tz) if tz else moment.replace(tzinfo=None)
+
+        monkeypatch.setattr(usertime, "datetime", Frozen)
+
+    return freeze
 
 
 @pytest.fixture

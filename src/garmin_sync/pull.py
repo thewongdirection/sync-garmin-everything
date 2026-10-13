@@ -165,7 +165,7 @@ def pull(
     include_activities: bool = True,
     activity_details: Iterable[str] | None = None,
     fit_dir: Path | None = None,
-    today: date | None = None,
+    today: date,
     progress: Progress = lambda _msg: None,
 ) -> PullReport:
     """Archive everything between ``start`` and ``end`` (inclusive).
@@ -177,7 +177,7 @@ def pull(
         source,
         archive,
         force=force,
-        today=today or date.today(),
+        today=today,
         progress=progress,
         detail_names=None if activity_details is None else frozenset(activity_details),
     )

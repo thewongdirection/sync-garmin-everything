@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 import stat
 from argparse import Namespace
-from datetime import date
+from datetime import UTC, date, datetime
 
 import pytest
 from garminconnect import GarminConnectConnectionError, GarminConnectTooManyRequestsError
@@ -581,6 +581,7 @@ def test_export_cloud_env_writes_a_private_file_and_prints_no_secret(
     assert lines["GARMIN_SYNC_GOOGLE_REFRESH_TOKEN"] == REFRESH
     assert lines["GARMIN_SYNC_GOOGLE_CLIENT_SECRET"] == SECRET
     assert lines["GARMIN_SYNC_GARMIN_IS_CN"] == "0"
+    assert lines["GARMIN_SYNC_TIMEZONE"] == "America/New_York"  # from the test environment
 
 
 def test_export_cloud_env_needs_both_logins(capsys, home, monkeypatch) -> None:
@@ -591,6 +592,199 @@ def test_export_cloud_env_needs_both_logins(capsys, home, monkeypatch) -> None:
     write_client(home.google_client_file)
     code, _, err = run(capsys, home, "auth", "export-cloud-env")
     assert code == exitcodes.ERROR and "Google" in err and not home.cloud_env_file.exists()
+
+
+# -- time zone --------------------------------------------------------------------------------
+
+
+def forget_zone(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("GARMIN_SYNC_TIMEZONE")
+
+
+def test_timezone_command_shows_the_zone_in_use(capsys, home) -> None:
+    code, out, _ = run(capsys, home, "--json", "timezone")
+    assert code == 0
+    assert json.loads(out) == {"timezone": "America/New_York", "source": "env"}
+
+
+def test_an_unset_zone_is_an_instruction_to_ask_the_user(capsys, home, monkeypatch) -> None:
+    forget_zone(monkeypatch)
+    code, _, err = run(capsys, home, "timezone")
+    assert code == exitcodes.ERROR
+    assert "Ask the user which time zone" in err and "garmin-sync timezone <their zone" in err
+
+
+def test_a_saved_zone_is_private_and_used_afterwards(capsys, home, monkeypatch) -> None:
+    forget_zone(monkeypatch)
+    code, _, err = run(capsys, home, "timezone", "Asia/Singapore")
+    assert code == 0 and "Asia/Singapore (UTC+08:00)" in err
+    assert read_json(home.settings_file) == {"timezone": "Asia/Singapore"}
+    assert stat.S_IMODE(home.settings_file.stat().st_mode) == 0o600
+    code, out, _ = run(capsys, home, "--json", "timezone")
+    assert json.loads(out) == {"timezone": "Asia/Singapore", "source": "settings"}
+
+
+def test_saving_a_zone_keeps_other_settings(capsys, home) -> None:
+    home.settings_file.write_text('{"keep": 1}')
+    run(capsys, home, "timezone", "Asia/Singapore")
+    assert read_json(home.settings_file) == {"keep": 1, "timezone": "Asia/Singapore"}
+
+
+@pytest.mark.parametrize("bad", ["SGT", "UTC+8", "EST", "Etc/GMT-8", "../../etc/passwd"])
+def test_an_ambiguous_or_invalid_zone_is_refused_and_not_saved(capsys, home, bad) -> None:
+    code, _, err = run(capsys, home, "timezone", bad)
+    assert code == exitcodes.ERROR and "IANA" in err and not home.settings_file.exists()
+
+
+def test_the_environment_overrides_the_saved_zone(capsys, home) -> None:
+    run(capsys, home, "timezone", "Asia/Singapore")
+    _, out, _ = run(capsys, home, "--json", "timezone")
+    assert json.loads(out) == {"timezone": "America/New_York", "source": "env"}
+
+
+def test_pull_without_a_zone_stops_before_contacting_garmin(capsys, home, monkeypatch) -> None:
+    forget_zone(monkeypatch)
+
+    def no_login(*_a, **_k):
+        raise AssertionError("must not log in without a time zone")
+
+    monkeypatch.setattr(cli, "login_from_tokens", no_login)
+    code, _, err = run(capsys, home, "pull", "--days", "1")
+    assert code == exitcodes.ERROR and "time zone is not set" in err
+
+
+def test_push_without_a_zone_asks_too(capsys, home, monkeypatch) -> None:
+    forget_zone(monkeypatch)
+    code, _, err = run(capsys, home, "push", "--sink", "health-connect", "--days", "1")
+    assert code == exitcodes.ERROR and "time zone is not set" in err
+
+
+@pytest.mark.parametrize(
+    ("zone", "expected_days"),
+    [
+        # 23:07 UTC on 3 May is already 4 May in Singapore, still 3 May in New York.
+        ("Asia/Singapore", {"2024-05-03", "2024-05-04"}),
+        ("America/New_York", {"2024-05-02", "2024-05-03"}),
+    ],
+)
+def test_pull_counts_days_back_from_the_users_today_not_utc(
+    capsys, home, monkeypatch, freeze_time, zone, expected_days
+) -> None:
+    freeze_time(datetime(2024, 5, 3, 23, 7, tzinfo=UTC))
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", zone)
+    api = FakeGarmin({"get_user_summary": lambda day: user_summary_payload(day)})
+    use_garmin(monkeypatch, api)
+    code, _, _ = run(capsys, home, "pull", "--days", "2", "--only", "user_summary")
+    assert code == 0
+    assert {args[0] for name, args in api.calls if name == "get_user_summary"} == expected_days
+
+
+def test_the_users_today_is_not_the_future_even_when_utc_says_it_is_yesterday(
+    capsys, home, monkeypatch, freeze_time
+) -> None:
+    freeze_time(datetime(2024, 5, 3, 23, 7, tzinfo=UTC))
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "Asia/Singapore")
+    code, _, _ = run(
+        capsys,
+        home,
+        "push",
+        "--sink",
+        "health-connect",
+        "--since",
+        "2024-05-04",
+        "--until",
+        "2024-05-04",
+    )
+    assert code == 0
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "America/New_York")
+    code, _, err = run(
+        capsys,
+        home,
+        "push",
+        "--sink",
+        "health-connect",
+        "--since",
+        "2024-05-04",
+        "--until",
+        "2024-05-04",
+    )
+    assert code == exitcodes.ERROR and "in the future" in err
+
+
+def test_a_machine_zone_is_used_but_flagged_as_a_guess(capsys, home, monkeypatch) -> None:
+    forget_zone(monkeypatch)
+    monkeypatch.setattr(cli.usertime, "system_zone_name", lambda: "Asia/Singapore")
+    code, _, err = run(capsys, home, "push", "--sink", "health-connect", "--days", "1")
+    assert code == 0 and "only a guess" in err and "garmin-sync timezone Asia/Singapore" in err
+    run(capsys, home, "timezone", "Asia/Singapore")
+    _, _, err = run(capsys, home, "push", "--sink", "health-connect", "--days", "1")
+    assert "only a guess" not in err  # once confirmed, the note stops
+
+
+def test_saving_warns_when_the_environment_will_still_win(capsys, home) -> None:
+    code, _, err = run(capsys, home, "timezone", "Asia/Singapore")
+    assert code == 0 and "GARMIN_SYNC_TIMEZONE is set and still takes precedence" in err
+    assert read_json(home.settings_file) == {"timezone": "Asia/Singapore"}
+
+
+def test_saving_confirms_in_json_too(capsys, home) -> None:
+    code, out, _ = run(capsys, home, "--json", "timezone", "Asia/Singapore")
+    assert code == 0 and json.loads(out) == {"timezone": "Asia/Singapore", "saved": True}
+
+
+@pytest.mark.parametrize("damaged", ["{bad", "[1]", ""])
+def test_a_damaged_settings_file_does_not_stop_the_zone_being_saved(capsys, home, damaged) -> None:
+    home.settings_file.write_text(damaged)
+    code, _, _ = run(capsys, home, "timezone", "Asia/Singapore")
+    assert code == 0 and read_json(home.settings_file) == {"timezone": "Asia/Singapore"}
+
+
+def test_an_invalid_environment_value_is_reported_by_name_not_value(
+    capsys, home, monkeypatch
+) -> None:
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "SGT-SECRET-LOOKING-VALUE")
+    code, _, err = run(capsys, home, "timezone")
+    assert code == exitcodes.ERROR and "GARMIN_SYNC_TIMEZONE" in err
+    assert "SECRET-LOOKING" not in err
+
+
+def test_status_reports_the_zone_that_commands_would_use(capsys, home, monkeypatch) -> None:
+    _, out, _ = run(capsys, home, "--json", "status")
+    assert json.loads(out)["timezone"] == {"name": "America/New_York", "source": "env"}
+    forget_zone(monkeypatch)
+    _, out, _ = run(capsys, home, "--json", "status")
+    assert json.loads(out)["timezone"] is None  # unset: the skill must ask
+    run(capsys, home, "timezone", "Asia/Singapore")
+    _, out, _ = run(capsys, home, "--json", "status")
+    assert json.loads(out)["timezone"] == {"name": "Asia/Singapore", "source": "settings"}
+
+
+def test_sync_works_out_today_once(capsys, home, monkeypatch) -> None:
+    """Regression: pull and push each asked, so a run across midnight pulled one day and pushed
+    the next."""
+    asked = []
+    real = cli.usertime.today_in
+    monkeypatch.setattr(cli.usertime, "today_in", lambda *a, **k: asked.append(1) or real(*a, **k))
+    use_garmin(monkeypatch, FakeGarmin())
+    run(capsys, home, "sync", "--sinks", "health-connect", "--days", "1")
+    assert len(asked) == 1
+
+
+def test_export_cloud_env_will_not_guess_the_zone(capsys, home, monkeypatch) -> None:
+    pretend_terminal(monkeypatch)
+    forget_zone(monkeypatch)
+    monkeypatch.setattr(cli.usertime, "system_zone_name", lambda: "Asia/Singapore")
+    (home.garmin_token_dir / "garmin_tokens.json").write_text("{}")
+    write_client(home.google_client_file)
+    home.google_token_file.write_text(
+        json.dumps({"access_token": "t", "refresh_token": REFRESH, "expires_at": 9e9, "scope": ""})
+    )
+    code, _, err = run(capsys, home, "auth", "export-cloud-env")
+    assert code == exitcodes.ERROR and "Ask the user which time zone" in err
+    assert not home.cloud_env_file.exists()
+    run(capsys, home, "timezone", "Asia/Singapore")
+    code, _, _ = run(capsys, home, "auth", "export-cloud-env")
+    assert code == 0 and "GARMIN_SYNC_TIMEZONE=Asia/Singapore" in home.cloud_env_file.read_text()
 
 
 # -- misc -------------------------------------------------------------------------------------

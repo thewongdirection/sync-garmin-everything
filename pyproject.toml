@@ -13,6 +13,7 @@ dependencies = [
     "garminconnect==0.3.17",  # unofficial and unversioned upstream: bump deliberately, with a lock refresh
     "curl_cffi>=0.7,<1",
     "requests>=2.32,<3",
+    "tzdata>=2024.1",  # IANA zone data for machines (slim containers, Windows) that lack it
 ]
 
 [project.optional-dependencies]

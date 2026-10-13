@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from datetime import date
+from datetime import UTC, date, datetime, timedelta
 
 from garminconnect import GarminConnectAuthenticationError, GarminConnectConnectionError
 
@@ -186,3 +186,88 @@ def test_no_secret_ever_appears_in_the_report(home) -> None:
     http = FakeHttp(queue=[FakeResponse(200, {"name": "users/me/identity"})])
     shown = json.dumps([c.to_dict() for c in run(home, online=True, http=http)])
     assert SENTINEL not in shown
+
+
+# -- time zone --------------------------------------------------------------------------------
+
+
+def sgt_user_summary(day: str) -> dict:
+    """A day in Singapore: local midnight is 16:00 UTC the evening before."""
+    previous = (date.fromisoformat(day) - timedelta(days=1)).isoformat()
+    return {
+        "calendarDate": day,
+        "wellnessStartTimeGmt": f"{previous}T16:00:00.0",
+        "wellnessStartTimeLocal": f"{day}T00:00:00.0",
+    }
+
+
+def zone_check(home, **kwargs) -> doctor.Check:
+    return checks_by_name(run(home, **kwargs))["timezone"]
+
+
+def test_an_unset_zone_fails_and_says_to_ask_the_user(home, monkeypatch) -> None:
+    monkeypatch.delenv("GARMIN_SYNC_TIMEZONE")
+    check = zone_check(home)
+    assert check.status == doctor.FAIL and "not set" in check.message
+    assert "Ask the user" in check.fix and "garmin-sync timezone" in check.fix
+    assert "Ask the user" in doctor.next_action(run(home))
+
+
+def test_an_invalid_zone_fails_with_the_reason(home, monkeypatch) -> None:
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "SGT")
+    check = zone_check(home)
+    assert check.status == doctor.FAIL and "IANA" in check.message
+
+
+def test_a_zone_taken_from_the_machine_is_only_a_warning_to_confirm(home, monkeypatch) -> None:
+    monkeypatch.delenv("GARMIN_SYNC_TIMEZONE")
+    monkeypatch.setattr(doctor.usertime, "system_zone_name", lambda: "Asia/Singapore")
+    check = zone_check(home)
+    assert check.status == doctor.WARN and "not confirmed" in check.message
+    assert "garmin-sync timezone Asia/Singapore" in check.fix
+
+
+def test_a_saved_zone_counts_as_confirmed(home, monkeypatch) -> None:
+    monkeypatch.delenv("GARMIN_SYNC_TIMEZONE")
+    home.settings_file.write_text('{"timezone": "Asia/Singapore"}')
+    check = zone_check(home)
+    assert check.status == doctor.OK and "Asia/Singapore (UTC+08:00)" in check.message
+
+
+def test_garmin_offsets_that_agree_with_the_zone_are_fine(home, monkeypatch) -> None:
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "Asia/Singapore")
+    with Archive.open(home.archive_file) as archive:
+        archive.put_raw("user_summary", "2024-05-09", sgt_user_summary("2024-05-09"))
+    assert zone_check(home).status == doctor.OK
+
+
+def test_garmin_offsets_that_disagree_with_the_zone_are_flagged(home, monkeypatch) -> None:
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "Asia/Singapore")
+    with Archive.open(home.archive_file) as archive:
+        archive.put_raw("user_summary", "2024-05-09", user_summary_payload("2024-05-09"))  # UTC-4
+    check = zone_check(home)
+    assert check.status == doctor.WARN and "differs on 1 recent day" in check.message
+    assert "travelling" in check.fix
+
+
+def test_freshness_is_judged_by_the_users_date_not_utc(home, monkeypatch, freeze_time) -> None:
+    """At 23:07 UTC on 9 May it is already 10 May in Singapore: a 6 May archive is 4 days old."""
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "Asia/Singapore")
+    freeze_time(datetime(2024, 5, 9, 23, 7, tzinfo=UTC))
+    with Archive.open(home.archive_file) as archive:
+        archive.put_raw("user_summary", "2024-05-06", sgt_user_summary("2024-05-06"))
+    stale = doctor.run_doctor(home, online=False, http=FakeHttp())
+    assert "4 days old" in checks_by_name(stale)["archive"].message
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "America/New_York")  # still 9 May there: 3 days
+    fine = doctor.run_doctor(home, online=False, http=FakeHttp())
+    assert checks_by_name(fine)["archive"].status == doctor.OK
+
+
+def test_a_bad_zone_names_where_it_was_set_but_not_what_it_was(home, monkeypatch) -> None:
+    monkeypatch.setenv("GARMIN_SYNC_TIMEZONE", "SGT-SECRET-LOOKING-VALUE")
+    check = zone_check(home)
+    assert check.status == doctor.FAIL and "GARMIN_SYNC_TIMEZONE" in check.message
+    assert "SECRET-LOOKING" not in check.message
+    monkeypatch.delenv("GARMIN_SYNC_TIMEZONE")
+    home.settings_file.write_text('{"timezone": "SGT"}')
+    assert "saved time zone" in zone_check(home).message

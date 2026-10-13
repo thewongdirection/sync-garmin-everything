@@ -46,7 +46,8 @@ owner-only. Nothing sensitive is ever stored in the repo.
 garmin-sync auth garmin                          # email, password, MFA code
 garmin-sync auth google init --client-file ~/Downloads/client_secret.json
 garmin-sync auth google login                    # prints a URL; paste the redirected address back
-garmin-sync doctor                               # confirms both, names anything missing
+garmin-sync timezone Asia/Singapore              # your IANA zone: "today" must be your day, not UTC's
+garmin-sync doctor                               # confirms all of it, names anything missing
 
 # 2. Archive and deliver
 garmin-sync pull --days 30                       # everything; resumable, safe to re-run
@@ -61,6 +62,10 @@ garmin-sync status        # local state, never secrets
 garmin-sync coverage      # endpoint -> Google Health / Health Connect mapping
 garmin-sync inventory     # fields your account returns that the field map lacks (paths and types only)
 ```
+
+Your time zone is an explicit setting, never guessed: cloud machines run in UTC, where it is still
+yesterday for anyone ahead of it. If it is unset, the commands and the skill stop and ask; the machine's own zone is used only as a
+flagged guess.
 
 Writes are **dry-run by default**; `--apply` is required. Only *final* data is sent (see
 [ARCHITECTURE.md](docs/ARCHITECTURE.md)), a ledger records every write as it happens, and duplicate

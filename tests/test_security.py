@@ -424,6 +424,7 @@ def test_secret_carrying_objects_hide_their_values_in_reprs() -> None:
         google_client_id="id",
         google_client_secret="SECRET-SENTINEL",  # pragma: allowlist secret
         google_refresh_token="REFRESH-SENTINEL",
+        timezone="Asia/Singapore",
         is_cn=False,
         apply=True,
         days=3,
@@ -449,3 +450,27 @@ def test_the_redirect_check_would_catch_a_bare_requests_call() -> None:
     source = ast.parse("requests.post(url, data=body)\nhttp.get(url, allow_redirects=False)")
     calls = [n for n in ast.walk(source) if isinstance(n, ast.Call)]
     assert [_receiver(c) for c in calls] == ["requests", "http"]
+
+
+def test_nothing_in_src_reads_the_machines_date_or_clock_in_its_own_zone() -> None:
+    """Regression: `date.today()` is the cloud machine's date (UTC), a day behind a user in SGT.
+
+    Dates for the user come from `usertime.today_in`; instants come from `utc_now()`.
+    """
+    offenders = []
+    for path in sorted((ROOT / "src").rglob("*.py")):
+        for node in ast.walk(ast.parse(path.read_text())):
+            if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)):
+                continue
+            owner = node.func.value
+            if not (isinstance(owner, ast.Name) and owner.id in {"date", "datetime"}):
+                continue
+            no_zone = not node.keywords and len(node.args) < (
+                2 if node.func.attr == "fromtimestamp" else 1
+            )
+            naive = node.func.attr in {"now", "fromtimestamp"} and no_zone
+            if node.func.attr in {"today", "utcnow"} or naive:
+                offenders.append(
+                    f"{path.relative_to(ROOT)}:{node.lineno} {owner.id}.{node.func.attr}"
+                )
+    assert not offenders, offenders

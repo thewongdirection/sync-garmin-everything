@@ -9,12 +9,14 @@ from __future__ import annotations
 
 import getpass
 import json
+import os
 import sys
 from pathlib import Path
 from typing import Any
 
 import requests
 
+from garmin_sync import usertime
 from garmin_sync.errors import CliError
 from garmin_sync.garmin_source import (
     REGION_FILENAME,
@@ -35,6 +37,7 @@ from garmin_sync.sinks.google_client import GoogleClient
 
 # The variables written to the cloud-env file. Only these names are ever shown, never the values.
 CLOUD_ENV_NAMES = (
+    usertime.ENV_TIMEZONE,
     ENV_GARMIN_TOKENS,
     ENV_GARMIN_IS_CN,
     ENV_GOOGLE_CLIENT_ID,
@@ -132,9 +135,17 @@ def export_cloud_env(home: AppHome, *, log: Any) -> None:
     if google_token is None:
         raise CliError("not logged in to Google; run `garmin-sync auth google login` first")
 
+    # Only a zone the user has stated counts: the machine's own zone is not evidence of theirs.
+    zone = usertime.resolve_zone(
+        os.environ, usertime.read_saved_zone(home.settings_file), use_system=False
+    )
+    if zone is None:
+        raise CliError(f"{usertime.NOT_SET}. {usertime.ASK}, then try again")
+
     region_file = home.garmin_token_dir / REGION_FILENAME
     is_cn = bool(read_json(region_file).get("is_cn")) if region_file.exists() else False
     values = {
+        usertime.ENV_TIMEZONE: zone.name,
         ENV_GARMIN_TOKENS: json.dumps(read_json(token_file), separators=(",", ":")),
         ENV_GARMIN_IS_CN: "1" if is_cn else "0",
         ENV_GOOGLE_CLIENT_ID: client.client_id,

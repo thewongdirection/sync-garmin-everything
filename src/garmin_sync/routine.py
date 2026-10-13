@@ -24,7 +24,7 @@ from pathlib import Path
 from typing import Any
 
 from garmin_sync import endpoints as ep
-from garmin_sync import exitcodes
+from garmin_sync import exitcodes, usertime
 from garmin_sync.archive import Archive
 from garmin_sync.coverage import GOOGLE_WRITABLE
 from garmin_sync.garmin_source import (
@@ -102,6 +102,7 @@ class RoutineConfig:
     google_client_id: str
     google_client_secret: str
     google_refresh_token: str
+    timezone: str
     is_cn: bool
     apply: bool
     days: int
@@ -162,11 +163,19 @@ def config_from_env(env: Mapping[str, str]) -> RoutineConfig:
     missing = [name for name in REQUIRED_SECRETS if not env.get(name, "").strip()]
     if missing:
         raise ConfigError("missing environment variables: " + ", ".join(missing))
+    if not env.get(usertime.ENV_TIMEZONE, "").strip():
+        # Not a secret, but there is no safe default: the cloud machine's clock is UTC.
+        raise ConfigError(f"missing environment variable: {usertime.ENV_TIMEZONE}. {usertime.ASK}")
+    try:
+        zone = usertime.UserZone.from_name(env[usertime.ENV_TIMEZONE], usertime.Source.ENV)
+    except usertime.TimezoneError as exc:
+        raise ConfigError(str(exc)) from None  # names the variable, never its value
     return RoutineConfig(
         garmin_tokens=env[ENV_GARMIN_TOKENS],
         google_client_id=env[ENV_GOOGLE_CLIENT_ID].strip(),
         google_client_secret=env[ENV_GOOGLE_CLIENT_SECRET].strip(),
         google_refresh_token=env[ENV_GOOGLE_REFRESH_TOKEN].strip(),
+        timezone=zone.name,
         is_cn=_flag(env, ENV_GARMIN_IS_CN),
         apply=_flag(env, ENV_APPLY),
         days=_bounded_int(env, ENV_DAYS, DEFAULT_DAYS, MIN_DAYS, MAX_DAYS),
@@ -194,12 +203,13 @@ def run_routine(
     except ConfigError as exc:
         return RoutineResult(Status.MISCONFIGURED, str(exc), {})
     summary: dict[str, Any] = {
+        "timezone": config.timezone,
         "apply": config.apply,
         "days": config.days,
         "max_writes": config.max_writes,
     }
     try:
-        return _run(config, summary, http, garmin_login, today or date.today(), now, progress)
+        return _run(config, summary, http, garmin_login, today, now, progress)
     except Exception as exc:  # noqa: BLE001 - a scheduler needs a status line, not a traceback
         return RoutineResult(Status.FAILED, f"unexpected {type(exc).__name__}", summary)
 
@@ -209,11 +219,13 @@ def _run(
     summary: dict[str, Any],
     http: Any,
     garmin_login: GarminLogin,
-    today: date,
+    today: date | None,
     now: datetime | None,
     progress: Callable[[str], None],
 ) -> RoutineResult:
     now = now or utc_now()
+    zone = usertime.UserZone.from_name(config.timezone, usertime.Source.ENV)
+    today = today or usertime.today_in(zone, now)  # the user's date, not this machine's (UTC)
     try:
         auth = google_auth.GoogleAuth(
             google_auth.OAuthClient(config.google_client_id, config.google_client_secret),
@@ -250,6 +262,7 @@ def _run(
             end,
             only=ENDPOINTS,
             activity_details=ep.GOOGLE_WRITE_ACTIVITY_DETAILS,
+            today=today,
             progress=progress,
         )
         summary["pull"] = pulled.to_dict()
@@ -270,6 +283,8 @@ def _run(
     summary["push"] = pushed.to_dict()
     summary["normalization_issues"] = ctx.diag.to_list()
     summary["garmin_token_rotated"] = _rotated(config.garmin_tokens, source)
+    summary["timezone_checked_days"] = len(ctx.day_offsets)
+    summary["timezone_mismatch_days"] = usertime.mismatched_days(zone, ctx.day_offsets)
     return _conclude(config, summary, sorted(set(pulled.failed) & ep.ESSENTIAL), ctx, pushed.ok)
 
 
@@ -306,6 +321,14 @@ def _conclude(
         problems.append(f"{held_back} records held back until their data is complete")
     if not push_ok:
         problems.append("some records failed to write")
+    checked, off = summary["timezone_checked_days"], summary["timezone_mismatch_days"]
+    if checked and len(off) == checked:
+        # Every day Garmin could vouch for disagrees: the zone is stale or wrong (a trip's first
+        # days alone, with older days agreeing, stay in the summary but are not a failure).
+        problems.append(
+            f"Garmin's UTC offset differs from {config.timezone} on all {checked} recent day(s): "
+            "moved or travelling, or the zone is wrong; ask the user"
+        )
     if summary["garmin_token_rotated"]:
         problems.append(
             "Garmin rotated its refresh token; stateless mode cannot keep it (see docs)"

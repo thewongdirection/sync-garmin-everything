@@ -63,6 +63,18 @@ So "sync everything to Google" is not one write path. Getting *all* the data and
   events, notes) have not been fetched: what is written cannot be corrected, so it waits for them. A night belongs to the day you woke up, one rule used both
   for choosing a date range and for deciding finality (`Record.anchor_date`).
 
+**"Today" is the user's today.** Stored data is right regardless (every Garmin record carries its own
+UTC offset), but the current day has to come from somewhere, and a cloud machine's clock is UTC: at
+07:07 in Singapore it is 23:07 UTC the day before, so a window ending "today" would miss the morning.
+`usertime.py` therefore requires an explicit IANA zone (`GARMIN_SYNC_TIMEZONE`, else the setting saved by
+`garmin-sync timezone`, else a non-UTC system zone that doctor flags as unconfirmed). Abbreviations,
+offsets and legacy fixed-offset names (`SGT`, `UTC+8`, `EST`, `Etc/GMT-8`) are refused, error messages name
+the setting but never repeat its value, and a missing zone is a question for the user, never a UTC default.
+The routine refuses to run without it (`MISCONFIGURED`) and reports `PARTIAL` when Garmin's own per-day UTC
+offsets disagree with it on *every* day it could check (a trip's first days alone only show in the summary);
+a day whose clock changed is accepted at either side of the change. `pull(today=...)` is required, and a
+test forbids `date.today()` and zone-less `datetime.now()` anywhere in `src/`.
+
 **Writes cannot duplicate.** Google offers no update path for what we write, so the sink is conservative:
 
 * Every create carries a deterministic client-chosen id (`garmin-` + a hash of the record's stable id).

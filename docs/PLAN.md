@@ -171,11 +171,11 @@ Prerequisites: the routine clones the default branch (`main`), so the package an
 5. ~~**When Google already has the data**~~ **APPROVED:** skip. (e.g. from Garmin Connect's own sync): skip (recommended) vs. write anyway.
 6. ~~**Routine hosting & token persistence**~~ **DECIDED: A, stateless, spike first.** Fall back to B (Drive blob) only if the spike shows Garmin rotates its refresh token.
 7. ~~**Google OAuth app status**~~ **DECIDED: Production-unverified** for unattended use; the spike verifies the refresh token survives past 7 days.
-8. **Schedule:** your time zone and the two run times; and OK to create the empty repo's default branch / merge via PR when Phase 1 is done. *(open)*
+8. **Schedule:** ~~your time zone~~ **SGT (UTC+8), i.e. `Asia/Singapore`**, built in as an explicit setting (see §9, "Time zone"). Still open: the two run times (default proposal 07:07 and 19:07 SGT) and OK to merge via PR when Phase 1 is done. *(open)*
 9. ~~**Draft code**~~ **DONE:** stayed local until Phase 1 passed its gates; the reviewed rebuild and these docs are published together (this PR).
 
-Items 1-5 (the field-map defaults) were **approved as proposed on 2026-10-12** ("approve the defaults and start Phase 1"). Item 8 is
-still open: the time zone and run times; the default branch now exists (an empty root commit, so the routine has something to clone).
+Items 1-5 (the field-map defaults) were **approved as proposed on 2026-10-12** ("approve the defaults and start Phase 1"). Item 8's time zone is
+decided (SGT, `Asia/Singapore`); the run times are still open; the default branch now exists (an empty root commit, so the routine has something to clone).
 
 ## 8. Risks I can't remove
 
@@ -257,6 +257,23 @@ findings were verified before acting; the ones that held, and what changed:
 Deliberately not changed: the 2-hour/6-hour finality grace periods are a judgement, not a measurement (a live account will tell);
 the in-code caps are not a boundary against a prompt-injected agent (documented, with GitHub Actions as the stronger option);
 no CI workflow or `.claude/settings.json` was added, since neither was asked for.
+
+### Time zone
+
+The deployment zone is SGT (UTC+8). A cloud routine's clock is UTC, so `date.today()` made the 07:07 SGT run (23:07 UTC the
+day before) end its window a day short, and would have misjudged the CLI's ranges and the doctor's freshness check the same way.
+
+| Change | Regression test |
+|---|---|
+| Zone is an explicit IANA setting (`GARMIN_SYNC_TIMEZONE`, else `garmin-sync timezone`, else an unconfirmed non-UTC system zone); abbreviations, offsets and fixed-offset names refused | `test_usertime.py` |
+| `pull`/`push`/`sync` ranges and "end date in the future" use the user's today; no zone means stop and ask before contacting anything | `test_cli.py::test_pull_counts_days_back_from_the_users_today_not_utc`, `::test_pull_without_a_zone_stops_before_contacting_garmin` |
+| Routine requires the zone (`MISCONFIGURED` otherwise), builds its window from it, and flags Garmin offsets that disagree on every checked day (`PARTIAL`) | `test_routine.py::test_the_window_ends_on_the_users_today_not_the_machines`, `::test_a_missing_zone_is_refused_and_says_to_ask_the_user`, `::test_garmin_reporting_another_offset_makes_the_run_partial_not_silently_fine` |
+| Independent review of the zone change: zone errors echoed the pasted value; any disagreeing day made the routine `PARTIAL`, and midnight clock changes could false-alarm; `pull()` still defaulted to the machine's date; a damaged `settings.json` blocked saving; `TZ` did not win over `/etc/localtime`; sync asked for "today" twice; a naive `now` was read in the machine's zone | messages never repeat the value and name the setting; all-days rule and clock-change tolerance; `today` required and a repo-wide AST guard; `save_zone` tolerates damage; `TZ` precedence; one `today` per sync; naive `now` refused; status shows the effective zone | `test_usertime.py` (review findings), `test_routine.py::test_a_rejected_zone_value_is_never_echoed`, `::test_a_trip_that_only_touches_the_newest_days_is_reported_but_not_a_failure`, `::test_the_routine_hands_the_users_today_to_the_pull`, `test_cli.py::test_sync_works_out_today_once`, `test_security.py::test_nothing_in_src_reads_the_machines_date_or_clock_in_its_own_zone` |
+| Doctor reports unset / unconfirmed / disagreeing zones and judges freshness by the user's date | `test_doctor.py::test_an_unset_zone_fails_and_says_to_ask_the_user`, `::test_freshness_is_judged_by_the_users_date_not_utc` |
+| `auth export-cloud-env` carries the zone to the routine and refuses to guess it | `test_cli.py::test_export_cloud_env_writes_a_private_file_and_prints_no_secret` |
+| Skill asks the user when the zone is unset or unclear; routine schedule written with `CRON_TZ=Asia/Singapore` | `SKILL.md`, `references/setup-cloud-routine.md` |
+
+`tzdata` is a dependency so zone names resolve on minimal containers; locked with hashes like the rest.
 
 ## Appendix A. Fix list for the first draft (all fixed in Phase 1; see §9)
 

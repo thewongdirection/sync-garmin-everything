@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from typing import Any
 
 from garmin_sync import endpoints as ep
+from garmin_sync import usertime
 from garmin_sync.archive import Archive
 from garmin_sync.coverage import TARGETS
 from garmin_sync.garmin_source import TOKEN_FILENAME
@@ -45,7 +47,9 @@ def coverage_table() -> list[dict[str, Any]]:
     return rows
 
 
-def status_summary(home: AppHome, archive: Archive | None) -> dict[str, Any]:
+def status_summary(
+    home: AppHome, archive: Archive | None, env: Mapping[str, str]
+) -> dict[str, Any]:
     """Local state overview. Never includes token or credential values."""
     garmin_token = home.garmin_token_dir / TOKEN_FILENAME
     google: dict[str, Any] = {
@@ -61,12 +65,24 @@ def status_summary(home: AppHome, archive: Archive | None) -> dict[str, Any]:
         google["private_permissions"] = is_private(home.google_token_file)
     return {
         "home": str(home.root),
+        "timezone": _timezone_in_use(home, env),
         "garmin_login": garmin_token.exists(),
         "garmin_token_private": is_private(garmin_token) if garmin_token.exists() else None,
         "google": google,
         "archive_rows": archive.raw_counts() if archive else {},
         "pushed_to": archive.ledger_counts() if archive else {},
     }
+
+
+def _timezone_in_use(home: AppHome, env: Mapping[str, str]) -> dict[str, str] | None:
+    """The zone that commands would use and where it comes from (None: not set, so ask)."""
+    try:
+        zone = usertime.resolve_zone(
+            env, usertime.read_saved_zone(home.settings_file), use_system=True
+        )
+    except usertime.TimezoneError as exc:
+        return {"error": clean(exc)}
+    return {"name": zone.name, "source": zone.source} if zone else None
 
 
 def shape_of(value: Any, depth: int = 0) -> Any:
